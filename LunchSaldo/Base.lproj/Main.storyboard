@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PwR-wf-fti">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PwR-wf-fti">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -145,7 +145,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-hm-4dc">
-                                <rect key="frame" x="16" y="465" width="568" height="66"/>
+                                <rect key="frame" x="16" y="457" width="568" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="yme-ZP-mpk"/>
                                 </constraints>
@@ -158,7 +158,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fa-YJ-92s">
-                                <rect key="frame" x="16" y="465" width="568" height="66"/>
+                                <rect key="frame" x="16" y="457" width="568" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="fGJ-eB-gbS"/>
                                 </constraints>
@@ -177,6 +177,12 @@
                                 <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version_info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pN6-Td-cUD">
+                                <rect key="frame" x="274" y="531" width="52" height="12"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="10"/>
+                                <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -184,14 +190,16 @@
                             <constraint firstItem="Irf-7l-qjd" firstAttribute="width" secondItem="PNw-Ve-QbL" secondAttribute="width" id="Ed2-Xe-0Nm"/>
                             <constraint firstItem="Irf-7l-qjd" firstAttribute="centerY" secondItem="PNw-Ve-QbL" secondAttribute="centerY" id="FJJ-tR-0pM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Irf-7l-qjd" secondAttribute="trailing" id="KqL-dl-bDJ"/>
+                            <constraint firstItem="pN6-Td-cUD" firstAttribute="top" secondItem="3Fa-YJ-92s" secondAttribute="bottom" constant="8" id="KrG-Ya-b5W"/>
                             <constraint firstItem="PNw-Ve-QbL" firstAttribute="leading" secondItem="S7L-Nk-uio" secondAttribute="leadingMargin" id="LDb-go-iGe"/>
-                            <constraint firstItem="dz1-sh-3ZH" firstAttribute="top" secondItem="Vcq-hm-4dc" secondAttribute="bottom" constant="20" id="SRR-WV-qcL"/>
                             <constraint firstItem="Irf-7l-qjd" firstAttribute="leading" secondItem="PNw-Ve-QbL" secondAttribute="trailing" constant="8" id="Tap-gU-Hof"/>
                             <constraint firstItem="3Fa-YJ-92s" firstAttribute="leading" secondItem="S7L-Nk-uio" secondAttribute="leadingMargin" id="ZAR-1U-PTW"/>
+                            <constraint firstAttribute="centerX" secondItem="pN6-Td-cUD" secondAttribute="centerX" id="dZg-W3-ysm"/>
+                            <constraint firstItem="pN6-Td-cUD" firstAttribute="top" secondItem="Vcq-hm-4dc" secondAttribute="bottom" constant="8" id="gFG-cB-pbS"/>
                             <constraint firstAttribute="centerY" secondItem="PNw-Ve-QbL" secondAttribute="centerY" constant="30" id="ht9-0h-fx0"/>
                             <constraint firstItem="3Fa-YJ-92s" firstAttribute="trailing" secondItem="S7L-Nk-uio" secondAttribute="trailingMargin" id="m2m-em-7uz"/>
                             <constraint firstItem="Vcq-hm-4dc" firstAttribute="trailing" secondItem="S7L-Nk-uio" secondAttribute="trailingMargin" id="pwo-o8-fNz"/>
-                            <constraint firstItem="dz1-sh-3ZH" firstAttribute="top" secondItem="3Fa-YJ-92s" secondAttribute="bottom" constant="20" id="tYV-OI-sKN"/>
+                            <constraint firstItem="dz1-sh-3ZH" firstAttribute="top" secondItem="pN6-Td-cUD" secondAttribute="bottom" constant="8" id="yu4-Jl-fBR"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2"/>
@@ -199,6 +207,7 @@
                         <outlet property="addCardButton" destination="3Fa-YJ-92s" id="Pcn-Nj-8jR"/>
                         <outlet property="cardIdLabel" destination="Irf-7l-qjd" id="Oaw-N2-6iz"/>
                         <outlet property="removeCardButton" destination="Vcq-hm-4dc" id="Anf-By-eLS"/>
+                        <outlet property="versionLabel" destination="pN6-Td-cUD" id="TIf-wY-W85"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDY-Zq-SXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

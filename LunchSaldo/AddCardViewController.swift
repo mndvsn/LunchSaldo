@@ -81,7 +81,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate {
   func parseData(data: NSData) -> (Bool, String) {
     var error: NSError?
     if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-      println(xmlDoc.xmlString)
+//      println(xmlDoc.xmlString)
       if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
         return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
       }

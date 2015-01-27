@@ -14,10 +14,22 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
   @IBOutlet weak var removeCardButton: UIButton!
   @IBOutlet weak var addCardButton: UIButton!
   
+  @IBOutlet weak var versionLabel: UILabel?
+  
   let defaults = NSUserDefaults.standardUserDefaults()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    if let label = versionLabel {
+      if let bundleInfo = NSBundle.mainBundle().infoDictionary? {
+        let productName = bundleInfo[kCFBundleNameKey] as String
+        let productVersion = bundleInfo["CFBundleShortVersionString"] as String
+        let productBuild = bundleInfo[kCFBundleVersionKey] as String
+        
+        label.text = "\(productName) \(productVersion) build \(productBuild.uppercaseString)"
+      }
+    }
   }
   
   override func viewWillAppear(animated: Bool) {
