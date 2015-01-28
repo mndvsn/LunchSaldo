@@ -41,6 +41,9 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
     let alert = UIAlertController(title: "Ta bort kortet?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
     alert.addAction(UIAlertAction(title: "Ta bort", style: .Destructive, handler: { action in
       self.defaults.removeObjectForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+      self.defaults.removeObjectForKey(AppSettings.Key.Balance.rawValue)
+      self.defaults.removeObjectForKey(AppSettings.Key.LastUpdatedTime.rawValue)
+      self.defaults.removeObjectForKey(AppSettings.Key.TopUpDate.rawValue)
       self.defaults.synchronize()
       
       self.updateCardId()
