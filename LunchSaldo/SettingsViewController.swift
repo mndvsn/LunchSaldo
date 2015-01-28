@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
   
-  @IBOutlet weak var cardIdLabel: UILabel?
+  @IBOutlet weak var cardIdLabel: UILabel!
   @IBOutlet weak var removeCardButton: UIButton!
   @IBOutlet weak var addCardButton: UIButton!
   
@@ -52,11 +52,11 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
   func updateCardId() {
     let cardId = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
     if (cardId > 0) {
-      cardIdLabel?.text = String(cardId)
+      cardIdLabel.text = String(cardId)
       removeCardButton.hidden = false
       addCardButton.hidden = true
     } else {
-      cardIdLabel?.text = "-"
+      cardIdLabel.text = "-"
       removeCardButton.hidden = true
       addCardButton.hidden = false
     }

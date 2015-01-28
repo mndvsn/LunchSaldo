@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CE8901A79379E00C45082 /* RikslunchenParser.swift */; };
 		326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECA71A710E3900A2C5AF /* SwiftColors.swift */; };
 		326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECAB1A71330900A2C5AF /* SettingsViewController.swift */; };
 		326C2CB61A71615A00FB37D9 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C2CB51A71615A00FB37D9 /* AddCardViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		324CE8901A79379E00C45082 /* RikslunchenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RikslunchenParser.swift; sourceTree = "<group>"; };
 		326BECA71A710E3900A2C5AF /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftColors.swift; path = Libs/SwiftColors.swift; sourceTree = "<group>"; };
 		326BECAB1A71330900A2C5AF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		326C2CB51A71615A00FB37D9 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
@@ -101,14 +103,12 @@
 			children = (
 				328EB4BA1A6FF30500846F38 /* Libs */,
 				3293C5651A7257AE004E2CC5 /* Constants.swift */,
-				328EB4971A6FAB1E00846F38 /* AppDelegate.swift */,
 				32778FD61A70FA50001C5E60 /* Router.swift */,
+				324CE8901A79379E00C45082 /* RikslunchenParser.swift */,
 				328EB4991A6FAB1E00846F38 /* BalanceViewController.swift */,
 				326C2CB51A71615A00FB37D9 /* AddCardViewController.swift */,
 				326BECAB1A71330900A2C5AF /* SettingsViewController.swift */,
 				328EB49B1A6FAB1E00846F38 /* Main.storyboard */,
-				328EB49E1A6FAB1E00846F38 /* Images.xcassets */,
-				328EB4A01A6FAB1E00846F38 /* LaunchScreen.xib */,
 				328EB4951A6FAB1E00846F38 /* Supporting Files */,
 			);
 			path = LunchSaldo;
@@ -117,6 +117,9 @@
 		328EB4951A6FAB1E00846F38 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				328EB4971A6FAB1E00846F38 /* AppDelegate.swift */,
+				328EB49E1A6FAB1E00846F38 /* Images.xcassets */,
+				328EB4A01A6FAB1E00846F38 /* LaunchScreen.xib */,
 				328EB4961A6FAB1E00846F38 /* Info.plist */,
 				328EB4B71A6FF00000846F38 /* LunchSaldo-Bridging-Header.h */,
 			);
@@ -337,6 +340,7 @@
 				32778FD71A70FA50001C5E60 /* Router.swift in Sources */,
 				328EB49A1A6FAB1E00846F38 /* BalanceViewController.swift in Sources */,
 				328EB4B91A6FF2FF00846F38 /* AEXML.swift in Sources */,
+				324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */,
 				328EB4981A6FAB1E00846F38 /* AppDelegate.swift in Sources */,
 				326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */,
 				326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */,

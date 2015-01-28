@@ -87,7 +87,8 @@ class BalanceViewController: UITableViewController, AddCardViewControllerDelegat
           if (error != nil) {
             println(error)
           } else {
-            if let balanceData = self.parseBalanceData(data as NSData) {
+            
+            if let balanceData = RikslunchenParser.parseBalanceData(data as NSData) {
               self.balanceLabel.text = "\(balanceData.amount) kr"
               self.topUpDateLabel.text = balanceData.topUpDate
               
@@ -113,16 +114,24 @@ class BalanceViewController: UITableViewController, AddCardViewControllerDelegat
     }
   }
   
-  func parseBalanceData(data: NSData) -> (amount: Double, topUpDate: String)? {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-//      println(xmlDoc.xmlString)
-      let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].doubleValue
-      let lastTopUpDate = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["lastTopUpDate"].stringValue
-      
-      return (amount, lastTopUpDate)
+  @IBAction func attemptLogin() {
+    let username = AppSettings.Temp.User.rawValue
+    Alamofire.request(RikslunchenRouter.LoginSession(username: username, password: AppSettings.Temp.Pass.rawValue))
+      .response { (_, _, data, error) in
+        let loginResult = RikslunchenParser.parseLoginResponseData(data as NSData)
+        println("Logga in: \(loginResult)")
+        
+        if loginResult {
+          self.getCardList(username)
+        }
     }
-    return nil
+  }
+  
+  func getCardList(username: String) {
+    Alamofire.request(RikslunchenRouter.GetCardList(username: username))
+      .response { (_, _, data, error) in
+        RikslunchenParser.parseCardListResponseData(data as NSData)
+    }
   }
   
   func didUpdateCards() {

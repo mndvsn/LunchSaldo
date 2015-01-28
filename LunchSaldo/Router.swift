@@ -14,10 +14,12 @@ enum RikslunchenRouter: URLRequestConvertible {
   static let authToken = "basic Q0g6ODlAUHFqJGw4NyMjTVM="
   
   case GetBalance(cardId: Int)
+  case LoginSession(username: String, password: String)
+  case GetCardList(username: String)
   
   var method: Alamofire.Method {
     switch self {
-    case .GetBalance:
+    case .GetBalance, .LoginSession, .GetCardList:
       return .POST
     }
   }
@@ -28,17 +30,27 @@ enum RikslunchenRouter: URLRequestConvertible {
     // construct http body, soap xml
     var soapString: String? {
       let soapRequest = AEXMLDocument()
-      let attributes = ["xmlns:i": "http://www.w3.org/2001/XMLSchema-instance", "xmlns:d": "http://www.w3.org/2001/XMLSchema", "xmlns:c": "http://schemas.xmlsoap.org/soap/encoding/", "xmlns:v": "http://schemas.xmlsoap.org/soap/envelope/"]
-      let envelope = soapRequest.addChild(name: "v:Envelope", attributes: attributes)
-      let header = envelope.addChild(name: "v:Header")
-      let body = envelope.addChild(name: "v:Body")
+      let attributes = ["xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "xmlns:xsd": "http://www.w3.org/2001/XMLSchema", "xmlns:soap": "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:urn": "urn:PhoneService"]
+      let envelope = soapRequest.addChild(name: "soap:Envelope", attributes: attributes)
+      let header = envelope.addChild(name: "soap:Header")
+      let body = envelope.addChild(name: "soap:Body")
       
       switch self {
+        
       case .GetBalance(let id):
-        let getBalance = body.addChild(name: "n0:getBalance", attributes: ["id": "o0", "c:root": "1", "xmlns:n0": "urn:PhoneService"])
-        getBalance.addChild(name: "cardNo", stringValue: String(id), attributes: ["i:type": "d:string"])
+        let getBalance = body.addChild(name: "urn:getBalance")
+        getBalance.addChild(name: "cardNo", stringValue: String(id))
+        
+      case .LoginSession(let username, let password):
+        let loginSession = body.addChild(name: "urn:login")
+        loginSession.addChild(name: "username", stringValue: username)
+        loginSession.addChild(name: "password", stringValue: password)
+        
+      case .GetCardList(let username):
+        let getCardList = body.addChild(name: "urn:getCardList")
+        getCardList.addChild(name: "username", stringValue: username)
       }
-      
+
       return soapRequest.xmlStringCompact
     }
     
@@ -46,6 +58,7 @@ enum RikslunchenRouter: URLRequestConvertible {
     mutableURLRequest.setValue(RikslunchenRouter.authToken, forHTTPHeaderField: "Authorization")
     mutableURLRequest.setValue("", forHTTPHeaderField: "SOAPAction")
     mutableURLRequest.setValue("text/xml; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+    mutableURLRequest.setValue("application/xml", forHTTPHeaderField: "Accept")
     mutableURLRequest.HTTPMethod = method.rawValue
     
     if let soap = soapString {

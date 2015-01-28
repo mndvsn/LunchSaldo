@@ -19,4 +19,9 @@ struct AppSettings {
     case TopUpDate = "topUpDate"
     case LastUpdatedTime = "lastUpdated"
   }
+  
+  enum Temp: String {
+    case User = "x"
+    case Pass = "y"
+  }
 }

@@ -57,7 +57,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate {
   func validateCardId(id:Int) {
     Alamofire.request(RikslunchenRouter.GetBalance(cardId: id)).response { (_, _, data, error) in
       
-      let (isValid, errorString) = self.parseData(data as NSData)
+      let (isValid, errorString) = RikslunchenParser.parseCardValidationData(data as NSData)
       
       if (!isValid || error != nil) {
         self.saveButton.enabled = true
@@ -77,18 +77,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate {
       }
     }
   }
-  
-  func parseData(data: NSData) -> (Bool, String) {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-//      println(xmlDoc.xmlString)
-      if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
-        return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
-      }
-    }
-    return (true, "")
-  }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
