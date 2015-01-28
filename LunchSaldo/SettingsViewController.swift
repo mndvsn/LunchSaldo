@@ -25,8 +25,9 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
       if let bundleInfo = NSBundle.mainBundle().infoDictionary? {
         let productName = bundleInfo[kCFBundleNameKey] as String
         let productBuild = bundleInfo[kCFBundleVersionKey] as String
+        let productVersion = bundleInfo["CFBundleShortVersionString"] as String
         
-        label.text = productName + " " + productBuild
+        label.text = "\(productName) \(productVersion) build \(productBuild)"
       }
     }
   }
