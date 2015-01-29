@@ -21,22 +21,28 @@ class RikslunchenParser {
     return nil
   }
 
-  class func parseLoginResponseData(data: NSData) -> Bool {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-//      println(xmlDoc.xmlString)
-      if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].boolValue {
-        return true
-      }
-    }
-    return false
-  }
-  
-  class func parseCardListResponseData(data: NSData) {
+  class func parseLoginResponseData(data: NSData) -> (Bool, String?) {
     var error: NSError?
     if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
       println(xmlDoc.xmlString)
+      if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].boolValue == false {
+        return (false, "Felaktiga inloggningsuppgifter. Vänligen kontrollera användarnamn och lösenord och försök igen.")
+      }
     }
+    return (true, nil)
+  }
+  
+  class func parseCardListResponseData(data: NSData) -> (cardId:Int, employerName:String)? {
+    var error: NSError?
+    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
+      println(xmlDoc.xmlString)
+      
+      let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].intValue
+      let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].stringValue
+      
+      return (cardId, employerName)
+    }
+    return nil
   }
   
   class func parseCardValidationData(data: NSData) -> (Bool, String) {

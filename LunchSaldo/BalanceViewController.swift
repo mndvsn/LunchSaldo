@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class BalanceViewController: UITableViewController, AddCardViewControllerDelegate {
+class BalanceViewController: UITableViewController, AddCardholderViewControllerDelegate {
   
   @IBOutlet weak var balanceLabel: UILabel!
   @IBOutlet weak var topUpDateLabel: UILabel!
@@ -17,7 +17,7 @@ class BalanceViewController: UITableViewController, AddCardViewControllerDelegat
   
   var cardID: Int?
   var shouldPresentSetupView: Bool = true
-  let defaults = NSUserDefaults.standardUserDefaults()
+  unowned let defaults = NSUserDefaults.standardUserDefaults()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,7 +63,7 @@ class BalanceViewController: UITableViewController, AddCardViewControllerDelegat
   }
   
   func showCardSetup() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardViewController") as AddCardViewController
+    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as AddCardholderViewController
     addCardViewController.delegate = self
     tabBarController?.presentViewController(addCardViewController, animated: true, completion: nil)
   }
@@ -111,26 +111,6 @@ class BalanceViewController: UITableViewController, AddCardViewControllerDelegat
           
           self.refreshControl?.endRefreshing()
       }
-    }
-  }
-  
-  @IBAction func attemptLogin() {
-    let username = AppSettings.Temp.User.rawValue
-    Alamofire.request(RikslunchenRouter.LoginSession(username: username, password: AppSettings.Temp.Pass.rawValue))
-      .response { (_, _, data, error) in
-        let loginResult = RikslunchenParser.parseLoginResponseData(data as NSData)
-        println("Logga in: \(loginResult)")
-        
-        if loginResult {
-          self.getCardList(username)
-        }
-    }
-  }
-  
-  func getCardList(username: String) {
-    Alamofire.request(RikslunchenRouter.GetCardList(username: username))
-      .response { (_, _, data, error) in
-        RikslunchenParser.parseCardListResponseData(data as NSData)
     }
   }
   

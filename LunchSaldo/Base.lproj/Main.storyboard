@@ -5,6 +5,147 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Add Cardholder View Controller-->
+        <scene sceneID="bSi-C6-5W2">
+            <objects>
+                <tableViewController storyboardIdentifier="AddCardholderViewController" id="rqw-nS-2fl" customClass="AddCardholderViewController" customModule="LunchSaldo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="500" sectionHeaderHeight="22" sectionFooterHeight="22" id="wu6-wl-EWX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="nId-aw-2iE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Eex-00-sUz">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eex-00-sUz" id="5vR-Tt-aNJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lägg till Rikslunchen-konto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5l-IX-3yP">
+                                                    <rect key="frame" x="162" y="130" width="277" height="28"/>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="24"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.35294117650000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=compact" ambiguous="YES">
+                                                        <rect key="frame" x="16" y="90" width="568" height="28"/>
+                                                    </variation>
+                                                    <variation key="heightClass=compact-widthClass=regular" ambiguous="YES">
+                                                        <rect key="frame" x="16" y="90" width="768" height="28"/>
+                                                    </variation>
+                                                </label>
+                                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sxP-6q-GOl">
+                                                    <rect key="frame" x="154" y="208" width="291" height="84"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personnummer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeT-67-RAG">
+                                                            <rect key="frame" x="8" y="14" width="107" height="19"/>
+                                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
+                                                            <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ET1-kc-6vu">
+                                                            <rect key="frame" x="123" y="8" width="160" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="160" id="K9I-mo-U0C"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="rqw-nS-2fl" id="74F-Hz-UgT"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lösenord" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIJ-So-ajg">
+                                                            <rect key="frame" x="8" y="52" width="107" height="19"/>
+                                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
+                                                            <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" ambiguous="YES">
+                                                                <rect key="frame" x="61" y="49" width="80" height="24"/>
+                                                            </variation>
+                                                        </label>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bbV-9J-Ajb">
+                                                            <rect key="frame" x="123" y="46" width="160" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="160" id="jmU-eK-H4j"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                            <variation key="heightClass=compact" ambiguous="YES">
+                                                                <rect key="frame" x="149" y="46" width="160" height="30"/>
+                                                            </variation>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="rqw-nS-2fl" id="7vX-T9-tP0"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="ET1-kc-6vu" secondAttribute="trailing" constant="8" id="4ou-xA-z1N"/>
+                                                        <constraint firstItem="bbV-9J-Ajb" firstAttribute="leading" secondItem="tIJ-So-ajg" secondAttribute="trailing" constant="8" id="70x-bB-nO7"/>
+                                                        <constraint firstItem="ET1-kc-6vu" firstAttribute="leading" secondItem="YeT-67-RAG" secondAttribute="trailing" constant="8" id="7jm-2u-6UU"/>
+                                                        <constraint firstItem="ET1-kc-6vu" firstAttribute="top" secondItem="sxP-6q-GOl" secondAttribute="top" constant="8" id="7s8-Mh-R9F"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bbV-9J-Ajb" secondAttribute="trailing" constant="8" id="JLH-0K-ZK5"/>
+                                                        <constraint firstItem="YeT-67-RAG" firstAttribute="centerY" secondItem="ET1-kc-6vu" secondAttribute="centerY" id="JTl-ka-V5F"/>
+                                                        <constraint firstAttribute="bottom" secondItem="bbV-9J-Ajb" secondAttribute="bottom" constant="8" id="Jcu-cJ-o3H"/>
+                                                        <constraint firstItem="tIJ-So-ajg" firstAttribute="leading" secondItem="sxP-6q-GOl" secondAttribute="leading" constant="8" id="oYo-Dg-LX0"/>
+                                                        <constraint firstItem="YeT-67-RAG" firstAttribute="leading" secondItem="sxP-6q-GOl" secondAttribute="leading" constant="8" id="qWM-8Q-ooP"/>
+                                                        <constraint firstItem="bbV-9J-Ajb" firstAttribute="centerY" secondItem="tIJ-So-ajg" secondAttribute="centerY" id="yuG-IH-f5N"/>
+                                                        <constraint firstItem="bbV-9J-Ajb" firstAttribute="top" secondItem="ET1-kc-6vu" secondAttribute="bottom" constant="8" id="z9H-zA-Y9n"/>
+                                                    </constraints>
+                                                    <variation key="heightClass=compact" ambiguous="YES">
+                                                        <rect key="frame" x="142" y="158" width="317" height="84"/>
+                                                    </variation>
+                                                    <variation key="heightClass=compact-widthClass=regular" ambiguous="YES">
+                                                        <rect key="frame" x="242" y="158" width="317" height="84"/>
+                                                    </variation>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mf6-Uq-U04">
+                                                    <rect key="frame" x="8" y="426" width="584" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="BQv-54-xuX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Lägg till konto">
+                                                        <color key="titleColor" red="0.21176470589999999" green="0.72941176470000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" red="0.21176470588235294" green="0.72549019607843135" blue="0.81176470588235294" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="validateAndSave" destination="rqw-nS-2fl" eventType="touchUpInside" id="3mv-93-249"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Mf6-Uq-U04" firstAttribute="leading" secondItem="5vR-Tt-aNJ" secondAttribute="leadingMargin" id="8Wb-b1-nT0"/>
+                                                <constraint firstItem="sxP-6q-GOl" firstAttribute="top" relation="lessThanOrEqual" secondItem="L5l-IX-3yP" secondAttribute="bottom" constant="50" id="Eb9-cM-Ikx"/>
+                                                <constraint firstAttribute="centerX" secondItem="L5l-IX-3yP" secondAttribute="centerX" id="Jhu-VV-x9E"/>
+                                                <constraint firstAttribute="centerX" secondItem="sxP-6q-GOl" secondAttribute="centerX" id="SKM-Ea-vBo"/>
+                                                <constraint firstItem="Mf6-Uq-U04" firstAttribute="bottom" secondItem="5vR-Tt-aNJ" secondAttribute="bottomMargin" id="Ug8-Dt-mdX"/>
+                                                <constraint firstItem="Mf6-Uq-U04" firstAttribute="trailing" secondItem="5vR-Tt-aNJ" secondAttribute="trailingMargin" id="VGv-WT-zV4"/>
+                                                <constraint firstAttribute="centerY" secondItem="sxP-6q-GOl" secondAttribute="centerY" id="gGO-fs-hUl"/>
+                                                <constraint firstItem="L5l-IX-3yP" firstAttribute="top" secondItem="5vR-Tt-aNJ" secondAttribute="topMargin" priority="250" constant="30" id="hSa-3a-kQG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="rqw-nS-2fl" id="YEr-I3-AdZ"/>
+                            <outlet property="delegate" destination="rqw-nS-2fl" id="29M-8s-qaE"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="passwordInput" destination="bbV-9J-Ajb" id="3wa-w8-ebn"/>
+                        <outlet property="saveButton" destination="Mf6-Uq-U04" id="sPo-ug-1Xb"/>
+                        <outlet property="usernameInput" destination="ET1-kc-6vu" id="W1O-aN-J2O"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1lV-VM-8Dy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-311" y="-418"/>
+        </scene>
         <!--Balance View Controller-->
         <scene sceneID="EVA-CW-Kb6">
             <objects>
@@ -213,90 +354,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDY-Zq-SXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="458" y="617"/>
-        </scene>
-        <!--Add Card View Controller-->
-        <scene sceneID="B60-1X-W0T">
-            <objects>
-                <viewController storyboardIdentifier="AddCardViewController" id="dWC-oL-YT3" customClass="AddCardViewController" customModule="LunchSaldo" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G1w-pu-oZy"/>
-                        <viewControllerLayoutGuide type="bottom" id="IMs-t4-CP9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="szT-YX-TlN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lägg till Rikslunchen-kort" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C5-JL-SP7">
-                                <rect key="frame" x="17" y="212" width="567" height="28"/>
-                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="24"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.35294117647058826" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyb-0o-OfE">
-                                <rect key="frame" x="16" y="514" width="568" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="oUG-id-zJe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Lägg till kort">
-                                    <color key="titleColor" red="0.21176470588235294" green="0.72941176470588232" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="validateAndSave" destination="dWC-oL-YT3" eventType="touchUpInside" id="rUm-SG-a97"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylO-il-4FQ">
-                                <rect key="frame" x="179" y="280" width="243" height="40"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kort ID" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDw-9n-wxv">
-                                        <rect key="frame" x="8" y="8" width="59" height="24"/>
-                                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
-                                        <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NNw-cA-8AH">
-                                        <rect key="frame" x="75" y="5" width="160" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="H74-Bl-1CC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="dWC-oL-YT3" id="SGi-JX-FnX"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="NNw-cA-8AH" firstAttribute="leading" secondItem="zDw-9n-wxv" secondAttribute="trailing" constant="8" id="F4m-AB-MIk"/>
-                                    <constraint firstItem="zDw-9n-wxv" firstAttribute="centerY" secondItem="NNw-cA-8AH" secondAttribute="centerY" id="VLT-wz-WJ5"/>
-                                    <constraint firstAttribute="trailing" secondItem="NNw-cA-8AH" secondAttribute="trailing" constant="8" id="Vd6-bX-Dct"/>
-                                    <constraint firstItem="zDw-9n-wxv" firstAttribute="top" secondItem="ylO-il-4FQ" secondAttribute="top" constant="8" id="dcr-vd-jMp"/>
-                                    <constraint firstItem="zDw-9n-wxv" firstAttribute="leading" secondItem="ylO-il-4FQ" secondAttribute="leading" constant="8" id="oPo-Q9-uTx"/>
-                                    <constraint firstAttribute="bottom" secondItem="zDw-9n-wxv" secondAttribute="bottom" constant="8" id="wDe-4k-ETS"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="ylO-il-4FQ" firstAttribute="top" secondItem="5C5-JL-SP7" secondAttribute="bottom" constant="40" id="1IJ-XD-k5e"/>
-                            <constraint firstItem="IMs-t4-CP9" firstAttribute="top" secondItem="Wyb-0o-OfE" secondAttribute="bottom" constant="20" id="G72-U0-FZI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5C5-JL-SP7" secondAttribute="trailing" id="HiG-zm-mtC"/>
-                            <constraint firstItem="Wyb-0o-OfE" firstAttribute="leading" secondItem="szT-YX-TlN" secondAttribute="leadingMargin" id="a2U-im-4oj"/>
-                            <constraint firstItem="Wyb-0o-OfE" firstAttribute="trailing" secondItem="szT-YX-TlN" secondAttribute="trailingMargin" id="bVh-sx-J5u"/>
-                            <constraint firstAttribute="centerY" secondItem="ylO-il-4FQ" secondAttribute="centerY" id="bu3-eI-MET"/>
-                            <constraint firstItem="5C5-JL-SP7" firstAttribute="leading" secondItem="szT-YX-TlN" secondAttribute="leadingMargin" constant="1" id="hWI-ID-wfJ"/>
-                            <constraint firstAttribute="centerX" secondItem="ylO-il-4FQ" secondAttribute="centerX" id="zad-zz-fdy"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="cardTextfield" destination="NNw-cA-8AH" id="nux-Og-n1c"/>
-                        <outlet property="saveButton" destination="Wyb-0o-OfE" id="Y96-GF-wZI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lMg-1O-Peu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-440" y="-431"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EGR-Jn-atK">

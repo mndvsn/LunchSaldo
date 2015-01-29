@@ -11,17 +11,15 @@ import Foundation
 struct AppSettings {
   struct Card {
     static let cardIdLength = 8
+    static let usernameLength = 12
   }
   
   enum Key: String {
     case RikslunchenCardID = "rikslunchenCardID"
+    case RikslunchenUsername = "rikslunchenUsername"
     case Balance = "balance"
     case TopUpDate = "topUpDate"
     case LastUpdatedTime = "lastUpdated"
-  }
-  
-  enum Temp: String {
-    case User = "x"
-    case Pass = "y"
+    case Employer = "employer"
   }
 }

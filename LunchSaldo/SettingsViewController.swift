@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
+class SettingsViewController: UIViewController, AddCardholderViewControllerDelegate {
   
   @IBOutlet weak var cardIdLabel: UILabel!
   @IBOutlet weak var removeCardButton: UIButton!
@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
   
   @IBOutlet weak var versionLabel: UILabel?
   
-  let defaults = NSUserDefaults.standardUserDefaults()
+  unowned let defaults = NSUserDefaults.standardUserDefaults()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
       self.updateCardId()
     }))
     alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-    presentViewController(alert, animated: true, completion: nil)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
   }
   
   func updateCardId() {
@@ -66,7 +66,7 @@ class SettingsViewController: UIViewController, AddCardViewControllerDelegate {
   }
   
   @IBAction func addNewCard() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardViewController") as AddCardViewController
+    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as AddCardholderViewController
     addCardViewController.delegate = self
     tabBarController?.presentViewController(addCardViewController, animated: true, completion: nil)
   }

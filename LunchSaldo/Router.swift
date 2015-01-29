@@ -14,8 +14,8 @@ enum RikslunchenRouter: URLRequestConvertible {
   static let authToken = "basic Q0g6ODlAUHFqJGw4NyMjTVM="
   
   case GetBalance(cardId: Int)
-  case LoginSession(username: String, password: String)
-  case GetCardList(username: String)
+  case LoginSession(username: Int, password: String)
+  case GetCardList(username: Int)
   
   var method: Alamofire.Method {
     switch self {
@@ -43,12 +43,12 @@ enum RikslunchenRouter: URLRequestConvertible {
         
       case .LoginSession(let username, let password):
         let loginSession = body.addChild(name: "urn:login")
-        loginSession.addChild(name: "username", stringValue: username)
+        loginSession.addChild(name: "username", stringValue: String(username))
         loginSession.addChild(name: "password", stringValue: password)
         
       case .GetCardList(let username):
         let getCardList = body.addChild(name: "urn:getCardList")
-        getCardList.addChild(name: "username", stringValue: username)
+        getCardList.addChild(name: "username", stringValue: String(username))
       }
 
       return soapRequest.xmlStringCompact
