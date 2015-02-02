@@ -38,8 +38,10 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   
   func checkStoredCards() {
     if (defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue) == 0) {
+      cardID = nil
       balanceLabel.text = "-"
       topUpDateLabel.text = "-"
+      lastUpdateLabel.text = "Inga kort sparade"
     } else {
       cardID = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
       shouldPresentSetupView = false
@@ -52,29 +54,32 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
       }
       
       balanceLabel.text = "\(storedBalance) kr"
-      topUpDateLabel.text = defaults.stringForKey(AppSettings.Key.TopUpDate.rawValue)
+      if let topUpDate = defaults.stringForKey(AppSettings.Key.TopUpDate.rawValue) {
+        topUpDateLabel.text = topUpDate
+      }
       
-      let updatedDate = defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as NSDate
-      let localizedDate = NSDateFormatter.localizedStringFromDate(updatedDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: .ShortStyle)
-      lastUpdateLabel.text = "Senaste uppdatering: " + localizedDate
-      
-      //attemptUpdate()
+      if let updatedDate = (defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as? NSDate) {
+        let localizedDate = NSDateFormatter.localizedStringFromDate(updatedDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: .ShortStyle)
+        lastUpdateLabel.text = "Senaste uppdatering: " + localizedDate
+      } else {
+        lastUpdateLabel.text = "Saldot behöver uppdateras"
+        updateBalance()
+      }
     }
   }
   
   func showCardSetup() {
     let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as AddCardholderViewController
     addCardViewController.delegate = self
-    tabBarController?.presentViewController(addCardViewController, animated: true, completion: nil)
+    tabBarController?.presentViewController(addCardViewController, animated: false, completion: nil)
   }
   
   @IBAction func attemptUpdate() {
-    if let lastUpdate = defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as? NSDate {
-      if lastUpdate.timeIntervalSinceDate(NSDate()) < -60 {
+    let lastUpdate = defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as? NSDate
+    if cardID != nil && lastUpdate?.timeIntervalSinceDate(NSDate()) < -60 {
         updateBalance()
-      } else {
-        refreshControl?.endRefreshing()
-      }
+    } else {
+      refreshControl?.endRefreshing()
     }
   }
   
@@ -116,7 +121,7 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   
   func didUpdateCards() {
     checkStoredCards()
-    updateBalance()
+//    updateBalance()
   }
   
   override func didReceiveMemoryWarning() {

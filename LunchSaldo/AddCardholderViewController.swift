@@ -58,13 +58,7 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
       
       let (valid, errorString) = RikslunchenParser.parseLoginResponseData(data as NSData)
       
-      println("validate")
-      
       if valid && error == nil {
-        self.defaults.setInteger(username, forKey: AppSettings.Key.RikslunchenUsername.rawValue)
-        // move back last updated time to enable updates
-        self.defaults.setObject(NSDate(timeIntervalSinceNow: -1000), forKey: AppSettings.Key.LastUpdatedTime.rawValue)
-        
         self.getCardList(username)
       } else {
         self.saveButton.enabled = true
@@ -80,14 +74,15 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
     Alamofire.request(RikslunchenRouter.GetCardList(username: username))
       .response { (_, _, data, error) in
         if let cardListInfo = RikslunchenParser.parseCardListResponseData(data as NSData) {
-          
+          self.defaults.setInteger(username, forKey: AppSettings.Key.RikslunchenUsername.rawValue)
           self.defaults.setInteger(cardListInfo.cardId, forKey: AppSettings.Key.RikslunchenCardID.rawValue)
           self.defaults.setObject(NSString(UTF8String: cardListInfo.employerName), forKey: AppSettings.Key.Employer.rawValue)
           
           self.defaults.synchronize()
-          self.delegate?.didUpdateCards?()
           
           self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+          
+          self.delegate?.didUpdateCards?()
         }
     }
   }

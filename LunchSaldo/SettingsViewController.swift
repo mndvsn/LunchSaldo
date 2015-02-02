@@ -11,8 +11,10 @@ import UIKit
 class SettingsViewController: UIViewController, AddCardholderViewControllerDelegate {
   
   @IBOutlet weak var cardIdLabel: UILabel!
+  @IBOutlet weak var employerLabel: UILabel!
   @IBOutlet weak var removeCardButton: UIButton!
   @IBOutlet weak var addCardButton: UIButton!
+    @IBOutlet weak var showTransactionsButton: UIButton!
   
   @IBOutlet weak var versionLabel: UILabel?
   
@@ -34,7 +36,7 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    updateCardId()
+    updateCardData()
   }
   
   @IBAction func removeCard() {
@@ -44,23 +46,32 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
       self.defaults.removeObjectForKey(AppSettings.Key.Balance.rawValue)
       self.defaults.removeObjectForKey(AppSettings.Key.LastUpdatedTime.rawValue)
       self.defaults.removeObjectForKey(AppSettings.Key.TopUpDate.rawValue)
+      self.defaults.removeObjectForKey(AppSettings.Key.Employer.rawValue)
       self.defaults.synchronize()
       
-      self.updateCardId()
+      self.updateCardData()
     }))
     alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
     UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
   }
   
-  func updateCardId() {
+  func updateCardData() {
     let cardId = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
     if (cardId > 0) {
       cardIdLabel.text = String(cardId)
+      if let employerName = defaults.stringForKey(AppSettings.Key.Employer.rawValue) {
+        employerLabel.text = employerName
+      }
+      
       removeCardButton.hidden = false
+      showTransactionsButton.hidden = false
       addCardButton.hidden = true
     } else {
       cardIdLabel.text = "-"
+      employerLabel.text = "-"
+      
       removeCardButton.hidden = true
+      showTransactionsButton.hidden = true
       addCardButton.hidden = false
     }
   }
