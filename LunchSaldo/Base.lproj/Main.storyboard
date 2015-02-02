@@ -284,7 +284,6 @@
                                         <exclude reference="Jgg-2F-0V8"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=compact-widthClass=regular"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-hm-4dc">
                                 <rect key="frame" x="16" y="479" width="568" height="44"/>
@@ -328,7 +327,6 @@
                                 <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="36" y="117" width="160" height="24"/>
                                 </variation>
-                                <variation key="heightClass=compact-widthClass=compact"/>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
                                         <include reference="v02-3W-961"/>
@@ -444,7 +442,6 @@
                                 <exclude reference="P5U-aO-aOc"/>
                             </mask>
                         </variation>
-                        <variation key="heightClass=regular-widthClass=regular"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2"/>
                     <connections>

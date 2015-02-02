@@ -14,7 +14,7 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   @IBOutlet weak var balanceLabel: UILabel!
   @IBOutlet weak var topUpDateLabel: UILabel!
   @IBOutlet weak var lastUpdateLabel: UILabel!
-  
+
   var cardID: Int?
   var shouldPresentSetupView: Bool = true
   unowned let defaults = NSUserDefaults.standardUserDefaults()
@@ -44,6 +44,13 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
       lastUpdateLabel.text = "Inga kort sparade"
     } else {
       cardID = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+      
+      // card data is old, clean and force re-add
+      if cardID != nil && defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue) == 0 {
+        removeCard()
+        return
+      }
+      
       shouldPresentSetupView = false
       
       let storedBalance = defaults.doubleForKey(AppSettings.Key.Balance.rawValue)
@@ -122,6 +129,15 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   func didUpdateCards() {
     checkStoredCards()
 //    updateBalance()
+  }
+  
+  func removeCard() {
+    self.defaults.removeObjectForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+    self.defaults.removeObjectForKey(AppSettings.Key.Balance.rawValue)
+    self.defaults.removeObjectForKey(AppSettings.Key.LastUpdatedTime.rawValue)
+    self.defaults.removeObjectForKey(AppSettings.Key.TopUpDate.rawValue)
+    self.defaults.removeObjectForKey(AppSettings.Key.Employer.rawValue)
+    self.defaults.synchronize()
   }
   
   override func didReceiveMemoryWarning() {
