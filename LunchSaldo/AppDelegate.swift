@@ -17,12 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
     
-    let blue = SWColor(hexString: "#36BACF")
+    let blue = AppSettings.Color.blue!
+    let red = AppSettings.Color.red!
     
     UITabBar.appearance().selectedImageTintColor = blue
     UIButton.appearance().setTitleColor(blue, forState: .Normal)
     UIBarButtonItem.appearance().tintColor = blue
-        
+    
+    UINavigationBar.appearance().barTintColor = red
+    UINavigationBar.appearance().translucent = false
+    UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    
     return true
   }
   

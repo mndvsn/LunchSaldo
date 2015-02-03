@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CE8901A79379E00C45082 /* RikslunchenParser.swift */; };
+		32660AAC1A80CF1C00FFCA14 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */; };
 		326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECA71A710E3900A2C5AF /* SwiftColors.swift */; };
 		326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECAB1A71330900A2C5AF /* SettingsViewController.swift */; };
 		32778FD71A70FA50001C5E60 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32778FD61A70FA50001C5E60 /* Router.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		324CE8901A79379E00C45082 /* RikslunchenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RikslunchenParser.swift; sourceTree = "<group>"; };
+		32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		326BECA71A710E3900A2C5AF /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftColors.swift; path = Libs/SwiftColors.swift; sourceTree = "<group>"; };
 		326BECAB1A71330900A2C5AF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		32778FD61A70FA50001C5E60 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				324CE8901A79379E00C45082 /* RikslunchenParser.swift */,
 				328EB4991A6FAB1E00846F38 /* BalanceViewController.swift */,
 				32DA03111A7A5E5B007FE1C9 /* AddCardholderViewController.swift */,
+				32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */,
 				326BECAB1A71330900A2C5AF /* SettingsViewController.swift */,
 				328EB49B1A6FAB1E00846F38 /* Main.storyboard */,
 				328EB4951A6FAB1E00846F38 /* Supporting Files */,
@@ -338,6 +341,7 @@
 				32DA03121A7A5E5B007FE1C9 /* AddCardholderViewController.swift in Sources */,
 				328EB49A1A6FAB1E00846F38 /* BalanceViewController.swift in Sources */,
 				328EB4B91A6FF2FF00846F38 /* AEXML.swift in Sources */,
+				32660AAC1A80CF1C00FFCA14 /* TransactionsViewController.swift in Sources */,
 				324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */,
 				328EB4981A6FAB1E00846F38 /* AppDelegate.swift in Sources */,
 				326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */,

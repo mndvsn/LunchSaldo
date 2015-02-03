@@ -16,10 +16,11 @@ enum RikslunchenRouter: URLRequestConvertible {
   case GetBalance(cardId: Int)
   case LoginSession(username: Int, password: String)
   case GetCardList(username: Int)
+  case GetTransactions(cardId: Int, from: NSDate, to: NSDate, records: Int, offset: Int)
   
   var method: Alamofire.Method {
     switch self {
-    case .GetBalance, .LoginSession, .GetCardList:
+    case .GetBalance, .LoginSession, .GetCardList, .GetTransactions:
       return .POST
     }
   }
@@ -49,6 +50,17 @@ enum RikslunchenRouter: URLRequestConvertible {
       case .GetCardList(let username):
         let getCardList = body.addChild(name: "urn:getCardList")
         getCardList.addChild(name: "username", stringValue: String(username))
+        
+      case .GetTransactions(let cardId, let fromDate, let toDate, let numberOfRecords, let offset):
+        let getTransactions = body.addChild(name: "urn:getTransactionsDetailsList")
+        getTransactions.addChild(name: "cardId", stringValue: String(cardId))
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        getTransactions.addChild(name: "fromDate", stringValue: dateFormatter.stringFromDate(fromDate))
+        getTransactions.addChild(name: "toDate", stringValue: dateFormatter.stringFromDate(toDate))
+        getTransactions.addChild(name: "offset", stringValue: String(offset))
+        getTransactions.addChild(name: "noOfTransactions", stringValue: String(numberOfRecords))
       }
 
       return soapRequest.xmlStringCompact

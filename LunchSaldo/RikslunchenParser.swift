@@ -24,7 +24,7 @@ class RikslunchenParser {
   class func parseLoginResponseData(data: NSData) -> (Bool, String?) {
     var error: NSError?
     if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-      println(xmlDoc.xmlString)
+//      println(xmlDoc.xmlString)
       if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].boolValue == false {
         return (false, "Felaktiga inloggningsuppgifter. Vänligen kontrollera användarnamn och lösenord och försök igen.")
       }
@@ -35,7 +35,11 @@ class RikslunchenParser {
   class func parseCardListResponseData(data: NSData) -> (cardId:Int, employerName:String)? {
     var error: NSError?
     if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-      println(xmlDoc.xmlString)
+//      println(xmlDoc.xmlString)
+      
+//      if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
+//        return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
+//      }
       
       let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].intValue
       let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].stringValue
@@ -45,14 +49,38 @@ class RikslunchenParser {
     return nil
   }
   
-  class func parseCardValidationData(data: NSData) -> (Bool, String) {
+  class func parseTransactions(data: NSData) -> ([Transaction]?) {
     var error: NSError?
     if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-      if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
-        return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
+      var transactions = [Transaction]()
+      if let records = xmlDoc.root["soap:Body"]["ns2:getTransactionsDetailsListResponse"]["return"].all {
+        for record in records {
+          let amount = record["amount"].doubleValue
+          let date = record["date"].stringValue
+          
+          var state: TransactionState {
+            switch record["state"].stringValue {
+            case "FAILED":
+              return .Failed
+            default: // "SUCCESSFUL"
+              return .Successful
+            }
+          }
+          
+          var type: TransactionType {
+            switch record["type"].stringValue {
+            case "RELOAD":
+              return .Reload
+            default: // "PURCHASE"
+              return .Purchase
+            }
+          }
+          transactions.append(Transaction(amount: amount, date: date, state: state, type: type))
+        }
       }
+      return transactions
     }
-    return (true, "")
+    return nil
   }
   
 }

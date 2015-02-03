@@ -97,7 +97,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="0.96862745098039216" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Mf6-Uq-U04" firstAttribute="leading" secondItem="5vR-Tt-aNJ" secondAttribute="leadingMargin" id="8Wb-b1-nT0"/>
                                                 <constraint firstItem="sxP-6q-GOl" firstAttribute="top" relation="lessThanOrEqual" secondItem="L5l-IX-3yP" secondAttribute="bottom" constant="50" id="Eb9-cM-Ikx"/>
@@ -126,7 +126,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1lV-VM-8Dy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="-418"/>
+            <point key="canvasLocation" x="1186" y="-47"/>
         </scene>
         <!--Balance View Controller-->
         <scene sceneID="EVA-CW-Kb6">
@@ -354,7 +354,7 @@
                                     <rect key="frame" x="204" y="117" width="360" height="24"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zm-TM-phD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zm-TM-phD">
                                 <rect key="frame" x="16" y="427" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gZN-vv-uZI"/>
@@ -363,6 +363,12 @@
                                     <color key="titleColor" red="0.21176470589999999" green="0.72941176470000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.21176470589999999" green="0.72549019609999998" blue="0.81176470590000005" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="6zn-JF-6ze" kind="show" id="TDh-2Y-f4s"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
@@ -443,7 +449,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2"/>
+                    <navigationItem key="navigationItem" id="2AI-m8-LJk"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addCardButton" destination="3Fa-YJ-92s" id="Pcn-Nj-8jR"/>
                         <outlet property="cardIdLabel" destination="Irf-7l-qjd" id="Oaw-N2-6iz"/>
@@ -455,12 +462,82 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDY-Zq-SXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472.5" y="678"/>
+            <point key="canvasLocation" x="1186" y="678"/>
+        </scene>
+        <!--Transaktioner-->
+        <scene sceneID="9XE-Tz-AOC">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="6zn-JF-6ze" customClass="TransactionsViewController" customModule="LunchSaldo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tJa-sZ-aEP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.92156862745098034" green="0.35294117647058826" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.92156862745098034" green="0.35294117647058826" blue="0.31764705882352939" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                        <color key="sectionIndexColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="transaction" id="P1a-vS-Ch4" customClass="TransactionCell" customModule="LunchSaldo" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P1a-vS-Ch4" id="1VB-rX-EIK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1n-Iv-cqE">
+                                            <rect key="frame" x="16" y="12" width="33" height="19"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                            <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-bk-1BZ">
+                                            <rect key="frame" x="527" y="12" width="57" height="19"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                            <color key="textColor" red="0.92156862750000001" green="0.35294117650000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="V1n-Iv-cqE" firstAttribute="leading" secondItem="1VB-rX-EIK" secondAttribute="leadingMargin" constant="8" id="1ge-zI-7Dv"/>
+                                        <constraint firstItem="V1n-Iv-cqE" firstAttribute="top" secondItem="1VB-rX-EIK" secondAttribute="topMargin" constant="4" id="HXK-Rf-9Xe"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="V1n-Iv-cqE" secondAttribute="bottom" constant="4" id="URu-dx-EIX"/>
+                                        <constraint firstItem="5A6-bk-1BZ" firstAttribute="top" secondItem="1VB-rX-EIK" secondAttribute="topMargin" constant="4" id="bup-0c-dJa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5A6-bk-1BZ" secondAttribute="trailing" constant="8" id="eSD-Dj-hgU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="5A6-bk-1BZ" secondAttribute="bottom" constant="4" id="vce-Cs-RiM"/>
+                                        <constraint firstAttribute="centerY" secondItem="V1n-Iv-cqE" secondAttribute="centerY" id="xJ4-Vu-w9J"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.97254901959999995" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.21176470588235294" green="0.72941176470588232" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="amountLabel" destination="5A6-bk-1BZ" id="vYM-gF-LLH"/>
+                                    <outlet property="dateLabel" destination="V1n-Iv-cqE" id="R7U-sa-QKJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6zn-JF-6ze" id="SAU-wB-DU0"/>
+                            <outlet property="delegate" destination="6zn-JF-6ze" id="EMp-uJ-eIu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Transaktioner" id="tNT-xq-Lxo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yZO-b3-CrW">
+                            <connections>
+                                <action selector="loadMoreTransactions:" destination="6zn-JF-6ze" id="27P-Ye-53R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="loadMoreButton" destination="yZO-b3-CrW" id="t2x-bt-l9I"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kGX-tG-X6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="678"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EGR-Jn-atK">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="PwR-wf-fti" sceneMemberID="viewController">
+                <tabBarController id="PwR-wf-fti" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="NPl-OQ-oWI">
@@ -471,12 +548,34 @@
                     </tabBar>
                     <connections>
                         <segue destination="ayU-rh-2GF" kind="relationship" relationship="viewControllers" id="46P-mA-hRg"/>
-                        <segue destination="aMG-rJ-kIM" kind="relationship" relationship="viewControllers" id="w7x-rT-ndg"/>
+                        <segue destination="6LO-jc-2ey" kind="relationship" relationship="viewControllers" id="w7x-rT-ndg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h81-Ca-mg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-440" y="275"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yE7-GL-Okh">
+            <objects>
+                <navigationController hidesBarsWhenKeyboardAppears="YES" id="6LO-jc-2ey" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zCM-Rf-kWb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hhI-5Y-k23">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="aMG-rJ-kIM" kind="relationship" relationship="rootViewController" id="9gW-ht-P6C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4gh-V1-HeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472" y="678"/>
         </scene>
     </scenes>
     <resources>
@@ -485,4 +584,5 @@
         <image name="History" width="41" height="32"/>
         <image name="Stats" width="29" height="25"/>
     </resources>
+    <color key="tintColor" red="0.21176470588235294" green="0.72941176470588232" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
 </document>

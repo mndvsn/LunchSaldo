@@ -22,4 +22,9 @@ struct AppSettings {
     case LastUpdatedTime = "lastUpdated"
     case Employer = "employer"
   }
+  
+  struct Color {
+    static let red = SWColor(hexString: "#EB5A51")
+    static let blue = SWColor(hexString: "#36BACF")
+  }
 }

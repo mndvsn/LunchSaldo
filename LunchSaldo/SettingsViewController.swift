@@ -36,6 +36,7 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
     updateCardData()
   }
   
