@@ -56,14 +56,18 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   func validateCardholder(username:Int, _ password:String) {
     Alamofire.request(RikslunchenRouter.LoginSession(username: username, password: password)).response { (_, _, data, error) in
       
-      let (valid, errorString) = RikslunchenParser.parseLoginResponseData(data as NSData)
+      var (valid, errorMessage) = RikslunchenParser.parseLoginResponseData(data as NSData)
       
       if valid && error == nil {
         self.getCardList(username)
       } else {
         self.saveButton.enabled = true
+
+        if error != nil {
+          errorMessage = "Det gick inte att ansluta. Kontrollera dina nätverksinställningar."
+        }
         
-        let alert = UIAlertController(title: "Fel", message: errorString!, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Fel", message: errorMessage, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
       }
