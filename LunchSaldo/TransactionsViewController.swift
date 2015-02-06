@@ -28,13 +28,13 @@ struct Transaction: Printable {
   }
 }
 
+class TransactionCell: UITableViewCell {
+  @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var amountLabel: UILabel!
+}
+
 class TransactionsViewController: UITableViewController {
 
-  class TransactionCell: UITableViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
-  }
-  
   @IBOutlet weak var loadMoreButton: UIBarButtonItem!
   
   let cardId = NSUserDefaults.standardUserDefaults().integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
