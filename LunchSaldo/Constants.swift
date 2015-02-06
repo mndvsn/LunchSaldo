@@ -16,7 +16,6 @@ struct AppSettings {
   
   enum Key: String {
     case RikslunchenCardID = "rikslunchenCardID"
-    case RikslunchenUsername = "rikslunchenUsername"
     case Balance = "balance"
     case TopUpDate = "topUpDate"
     case LastUpdatedTime = "lastUpdated"

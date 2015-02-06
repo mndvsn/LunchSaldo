@@ -23,10 +23,6 @@ struct Transaction: Printable {
   let state: TransactionState
   let type: TransactionType
   
-  var isSuccessful: Bool {
-    return state == .Successful
-  }
-  
   var description: String {
     return "[\(date)] \(amount)"
   }

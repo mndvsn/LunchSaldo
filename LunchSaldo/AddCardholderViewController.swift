@@ -74,7 +74,6 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
     Alamofire.request(RikslunchenRouter.GetCardList(username: username))
       .response { (_, _, data, error) in
         if let cardListInfo = RikslunchenParser.parseCardListResponseData(data as NSData) {
-          self.defaults.setInteger(username, forKey: AppSettings.Key.RikslunchenUsername.rawValue)
           self.defaults.setInteger(cardListInfo.cardId, forKey: AppSettings.Key.RikslunchenCardID.rawValue)
           self.defaults.setObject(NSString(UTF8String: cardListInfo.employerName), forKey: AppSettings.Key.Employer.rawValue)
           
