@@ -17,7 +17,7 @@ enum TransactionType {
   case Purchase, Reload
 }
 
-struct Transaction: Printable {
+struct Transaction: CustomStringConvertible {
   let amount: Double
   let date: String
   let state: TransactionState
@@ -60,8 +60,8 @@ class TransactionsViewController: UITableViewController {
     loadMoreButton.enabled = false
     Alamofire.request(RikslunchenRouter.GetTransactions(cardId: cardId, from: NSDate(timeIntervalSinceReferenceDate: 0), to: NSDate(), records: number, offset: offset))
       .response { (_, _, data, _) in
-        if let records = RikslunchenParser.parseTransactions(data as NSData) {
-          self.transactions.extend(records)
+        if let records = RikslunchenParser.parseTransactions(data!) {
+          self.transactions.appendContentsOf(records)
           self.loadMoreButton.enabled = true
           onComplete()
         }
@@ -98,7 +98,7 @@ class TransactionsViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("transaction", forIndexPath: indexPath) as TransactionCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("transaction", forIndexPath: indexPath) as! TransactionCell
     
     let transaction = transactions[indexPath.row]
     

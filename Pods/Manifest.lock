@@ -1,0 +1,16 @@
+PODS:
+  - AEXML (2.0.1)
+  - Alamofire (3.1.2)
+  - SwiftColors (0.3.1)
+
+DEPENDENCIES:
+  - AEXML
+  - Alamofire (~> 3.1)
+  - SwiftColors
+
+SPEC CHECKSUMS:
+  AEXML: d6bb5b994521fcf3667ee8ccc1ed533f31b19218
+  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  SwiftColors: 61efe0bf991cfed446684e03d1e9f635f1f11a84
+
+COCOAPODS: 0.39.0

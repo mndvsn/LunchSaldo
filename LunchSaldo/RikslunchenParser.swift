@@ -7,34 +7,39 @@
 //
 
 import Foundation
+import AEXML
 
 class RikslunchenParser {
   
   class func parseBalanceData(data: NSData) -> (amount: Double, topUpDate: String)? {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
+    do {
+      let xmlDoc = try AEXMLDocument(xmlData: data)
       let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].doubleValue
       let lastTopUpDate = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["lastTopUpDate"].stringValue
       
       return (amount, lastTopUpDate)
+    } catch {
+      print("\(error)")
     }
     return nil
   }
 
   class func parseLoginResponseData(data: NSData) -> (Bool, String?) {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
-//      println(xmlDoc.xmlString)
+    do {
+      let xmlDoc = try AEXMLDocument(xmlData: data)
+      // print(xmlDoc.xmlString)
       if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].boolValue == false {
         return (false, "Felaktiga inloggningsuppgifter. Vänligen kontrollera användarnamn och lösenord och försök igen.")
       }
+    } catch {
+      print("\(error)")
     }
     return (true, nil)
   }
   
   class func parseCardListResponseData(data: NSData) -> (cardId:Int, employerName:String)? {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
+    do {
+      let xmlDoc = try AEXMLDocument(xmlData: data)
 //      println(xmlDoc.xmlString)
       
 //      if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
@@ -45,13 +50,15 @@ class RikslunchenParser {
       let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].stringValue
       
       return (cardId, employerName)
+    } catch {
+      print("\(error)")
     }
     return nil
   }
   
   class func parseTransactions(data: NSData) -> ([Transaction]?) {
-    var error: NSError?
-    if let xmlDoc = AEXMLDocument(xmlData: data as NSData, error: &error) {
+    do {
+      let xmlDoc = try AEXMLDocument(xmlData: data)
       var transactions = [Transaction]()
       if let records = xmlDoc.root["soap:Body"]["ns2:getTransactionsDetailsListResponse"]["return"].all {
         for record in records {
@@ -79,6 +86,8 @@ class RikslunchenParser {
         }
       }
       return transactions
+    } catch {
+      print("\(error)")
     }
     return nil
   }

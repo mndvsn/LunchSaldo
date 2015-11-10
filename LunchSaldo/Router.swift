@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AEXML
 
 enum RikslunchenRouter: URLRequestConvertible {
   static let baseUrlString = "https://www.rikslunchen.se/rkchws/PhoneService"
@@ -25,7 +26,7 @@ enum RikslunchenRouter: URLRequestConvertible {
     }
   }
   
-  var URLRequest: NSURLRequest {
+  var URLRequest: NSMutableURLRequest {
     let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: RikslunchenRouter.baseUrlString)!)
     
     // construct http body, soap xml
@@ -33,37 +34,37 @@ enum RikslunchenRouter: URLRequestConvertible {
       let soapRequest = AEXMLDocument()
       let attributes = ["xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance", "xmlns:xsd": "http://www.w3.org/2001/XMLSchema", "xmlns:soap": "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:urn": "urn:PhoneService"]
       let envelope = soapRequest.addChild(name: "soap:Envelope", attributes: attributes)
-      let header = envelope.addChild(name: "soap:Header")
+      envelope.addChild(name: "soap:Header")
       let body = envelope.addChild(name: "soap:Body")
       
       switch self {
         
       case .GetBalance(let id):
         let getBalance = body.addChild(name: "urn:getBalance")
-        getBalance.addChild(name: "cardNo", stringValue: String(id))
+        getBalance.addChild(name: "cardNo", value: String(id))
         
       case .LoginSession(let username, let password):
         let loginSession = body.addChild(name: "urn:login")
-        loginSession.addChild(name: "username", stringValue: String(username))
-        loginSession.addChild(name: "password", stringValue: password)
+        loginSession.addChild(name: "username", value: String(username))
+        loginSession.addChild(name: "password", value: password)
         
       case .GetCardList(let username):
         let getCardList = body.addChild(name: "urn:getCardList")
-        getCardList.addChild(name: "username", stringValue: String(username))
+        getCardList.addChild(name: "username", value: String(username))
         
       case .GetTransactions(let cardId, let fromDate, let toDate, let numberOfRecords, let offset):
         let getTransactions = body.addChild(name: "urn:getTransactionsDetailsList")
-        getTransactions.addChild(name: "cardId", stringValue: String(cardId))
+        getTransactions.addChild(name: "cardId", value: String(cardId))
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        getTransactions.addChild(name: "fromDate", stringValue: dateFormatter.stringFromDate(fromDate))
-        getTransactions.addChild(name: "toDate", stringValue: dateFormatter.stringFromDate(toDate))
-        getTransactions.addChild(name: "offset", stringValue: String(offset))
-        getTransactions.addChild(name: "noOfTransactions", stringValue: String(numberOfRecords))
+        getTransactions.addChild(name: "fromDate", value: dateFormatter.stringFromDate(fromDate))
+        getTransactions.addChild(name: "toDate", value: dateFormatter.stringFromDate(toDate))
+        getTransactions.addChild(name: "offset", value: String(offset))
+        getTransactions.addChild(name: "noOfTransactions", value: String(numberOfRecords))
       }
 
-      return soapRequest.xmlStringCompact
+      return soapRequest.xmlString
     }
     
     // set http header
@@ -74,7 +75,7 @@ enum RikslunchenRouter: URLRequestConvertible {
     mutableURLRequest.HTTPMethod = method.rawValue
     
     if let soap = soapString {
-      let soapLength = countElements(soap)
+      let soapLength = soap.characters.count
       mutableURLRequest.setValue(String(soapLength), forHTTPHeaderField: "Content-Length")
       mutableURLRequest.HTTPBody = soap.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     }

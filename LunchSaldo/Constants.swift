@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftColors
 
 struct AppSettings {
   struct Card {
@@ -23,7 +24,7 @@ struct AppSettings {
   }
   
   struct Color {
-    static let red = SWColor(hexString: "#EB5A51")
-    static let blue = SWColor(hexString: "#36BACF")
+    static let red = UIColor(hex: 0xEB5A51)
+    static let blue = UIColor(hex: 0x36BACF)
   }
 }

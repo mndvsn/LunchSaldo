@@ -24,10 +24,10 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
     super.viewDidLoad()
     
     if let label = versionLabel {
-      if let bundleInfo = NSBundle.mainBundle().infoDictionary? {
-        let productName = bundleInfo[kCFBundleNameKey] as String
-        let productBuild = bundleInfo[kCFBundleVersionKey] as String
-        let productVersion = bundleInfo["CFBundleShortVersionString"] as String
+      if let bundleInfo = NSBundle.mainBundle().infoDictionary {
+        let productName = bundleInfo[kCFBundleNameKey as String]!
+        let productBuild = bundleInfo[kCFBundleVersionKey as String]!
+        let productVersion = bundleInfo["CFBundleShortVersionString"] as! String
         
         label.text = "\(productName) \(productVersion) build \(productBuild)"
       }
@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
   }
   
   @IBAction func addNewCard() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as AddCardholderViewController
+    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as! AddCardholderViewController
     addCardViewController.delegate = self
     tabBarController?.presentViewController(addCardViewController, animated: true, completion: nil)
   }

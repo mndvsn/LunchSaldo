@@ -31,7 +31,7 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     if textField == usernameInput {
-      let newLength = countElements(textField.text!) + countElements(string) - range.length
+      let newLength = textField.text!.characters.count + string.characters.count - range.length
       saveButton.enabled = (newLength >= AppSettings.Card.usernameLength)
       return newLength <= AppSettings.Card.usernameLength
     }
@@ -45,9 +45,9 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   
   @IBAction func validateAndSave() {
     saveButton.enabled = false
-    if let username = usernameInput.text.toInt() {
-      if countElements(String(username)) == AppSettings.Card.usernameLength {
-        let password = passwordInput.text
+    if let username = Int(usernameInput.text!) {
+      if String(username).characters.count == AppSettings.Card.usernameLength {
+        let password = passwordInput.text!
         validateCardholder(username, password)
       }
     }
@@ -55,21 +55,23 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   
   func validateCardholder(username:Int, _ password:String) {
     Alamofire.request(RikslunchenRouter.LoginSession(username: username, password: password)).response { (_, _, data, error) in
-      
-      var (valid, errorMessage) = RikslunchenParser.parseLoginResponseData(data as NSData)
-      
-      if valid && error == nil {
-        self.getCardList(username)
-      } else {
-        self.saveButton.enabled = true
 
-        if error != nil {
-          errorMessage = "Det gick inte att ansluta. Kontrollera dina nätverksinställningar."
+      if let loginData = data {
+        var (valid, errorMessage) = RikslunchenParser.parseLoginResponseData(loginData)
+
+        if valid && error == nil {
+          self.getCardList(username)
+        } else {
+          self.saveButton.enabled = true
+
+          if error != nil {
+            errorMessage = "Det gick inte att ansluta. Kontrollera dina nätverksinställningar."
+          }
+
+          let alert = UIAlertController(title: "Fel", message: errorMessage, preferredStyle: .Alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+          self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        let alert = UIAlertController(title: "Fel", message: errorMessage, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
       }
     }
   }
@@ -77,7 +79,7 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   func getCardList(username: Int) {
     Alamofire.request(RikslunchenRouter.GetCardList(username: username))
       .response { (_, _, data, error) in
-        if let cardListInfo = RikslunchenParser.parseCardListResponseData(data as NSData) {
+        if let cardListInfo = RikslunchenParser.parseCardListResponseData(data!) {
           self.defaults.setInteger(cardListInfo.cardId, forKey: AppSettings.Key.RikslunchenCardID.rawValue)
           self.defaults.setObject(NSString(UTF8String: cardListInfo.employerName), forKey: AppSettings.Key.Employer.rawValue)
           

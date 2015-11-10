@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CE8901A79379E00C45082 /* RikslunchenParser.swift */; };
 		32660AAC1A80CF1C00FFCA14 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */; };
-		326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECA71A710E3900A2C5AF /* SwiftColors.swift */; };
 		326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECAB1A71330900A2C5AF /* SettingsViewController.swift */; };
 		32778FD71A70FA50001C5E60 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32778FD61A70FA50001C5E60 /* Router.swift */; };
 		328EB4981A6FAB1E00846F38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328EB4971A6FAB1E00846F38 /* AppDelegate.swift */; };
@@ -18,10 +17,9 @@
 		328EB49F1A6FAB1E00846F38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328EB49E1A6FAB1E00846F38 /* Images.xcassets */; };
 		328EB4A21A6FAB1E00846F38 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328EB4A01A6FAB1E00846F38 /* LaunchScreen.xib */; };
 		328EB4AE1A6FAB1E00846F38 /* LunchSaldoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328EB4AD1A6FAB1E00846F38 /* LunchSaldoTests.swift */; };
-		328EB4B91A6FF2FF00846F38 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328EB4B81A6FF2FF00846F38 /* AEXML.swift */; };
 		3293C5661A7257AE004E2CC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3293C5651A7257AE004E2CC5 /* Constants.swift */; };
 		32DA03121A7A5E5B007FE1C9 /* AddCardholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DA03111A7A5E5B007FE1C9 /* AddCardholderViewController.swift */; };
-		DBF7FAAAC74E4B0079DF1FCB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A9E7EF778C10F34135C8B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DBF7FAAAC74E4B0079DF1FCB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A9E7EF778C10F34135C8B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +35,6 @@
 /* Begin PBXFileReference section */
 		324CE8901A79379E00C45082 /* RikslunchenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RikslunchenParser.swift; sourceTree = "<group>"; };
 		32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
-		326BECA71A710E3900A2C5AF /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftColors.swift; path = Libs/SwiftColors.swift; sourceTree = "<group>"; };
 		326BECAB1A71330900A2C5AF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		32778FD61A70FA50001C5E60 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		328EB4921A6FAB1E00846F38 /* LunchSaldo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchSaldo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +47,6 @@
 		328EB4A71A6FAB1E00846F38 /* LunchSaldoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchSaldoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		328EB4AC1A6FAB1E00846F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		328EB4AD1A6FAB1E00846F38 /* LunchSaldoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchSaldoTests.swift; sourceTree = "<group>"; };
-		328EB4B81A6FF2FF00846F38 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AEXML.swift; path = Libs/AEXML.swift; sourceTree = "<group>"; };
 		3293C5651A7257AE004E2CC5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		32DA03111A7A5E5B007FE1C9 /* AddCardholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardholderViewController.swift; sourceTree = "<group>"; };
 		3B2A9E7EF778C10F34135C8B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +98,6 @@
 		328EB4941A6FAB1E00846F38 /* LunchSaldo */ = {
 			isa = PBXGroup;
 			children = (
-				328EB4BA1A6FF30500846F38 /* Libs */,
 				3293C5651A7257AE004E2CC5 /* Constants.swift */,
 				32778FD61A70FA50001C5E60 /* Router.swift */,
 				324CE8901A79379E00C45082 /* RikslunchenParser.swift */,
@@ -142,15 +137,6 @@
 				328EB4AC1A6FAB1E00846F38 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		328EB4BA1A6FF30500846F38 /* Libs */ = {
-			isa = PBXGroup;
-			children = (
-				328EB4B81A6FF2FF00846F38 /* AEXML.swift */,
-				326BECA71A710E3900A2C5AF /* SwiftColors.swift */,
-			);
-			name = Libs;
 			sourceTree = "<group>";
 		};
 		D43139DD2954C3CCD993F751 /* Pods */ = {
@@ -218,7 +204,9 @@
 		328EB48A1A6FAB1E00846F38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "F&B Factory";
 				TargetAttributes = {
 					328EB4911A6FAB1E00846F38 = {
@@ -340,11 +328,9 @@
 				32778FD71A70FA50001C5E60 /* Router.swift in Sources */,
 				32DA03121A7A5E5B007FE1C9 /* AddCardholderViewController.swift in Sources */,
 				328EB49A1A6FAB1E00846F38 /* BalanceViewController.swift in Sources */,
-				328EB4B91A6FF2FF00846F38 /* AEXML.swift in Sources */,
 				32660AAC1A80CF1C00FFCA14 /* TransactionsViewController.swift in Sources */,
 				324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */,
 				328EB4981A6FAB1E00846F38 /* AppDelegate.swift in Sources */,
-				326BECA81A710E3900A2C5AF /* SwiftColors.swift in Sources */,
 				326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */,
 				3293C5661A7257AE004E2CC5 /* Constants.swift in Sources */,
 			);
@@ -409,6 +395,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -474,9 +461,11 @@
 			baseConfigurationReference = DC9A1BADF7CA48DA07172ECA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -486,9 +475,11 @@
 			baseConfigurationReference = E0FDD59123DDDB21F1F6F5D5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -507,6 +498,7 @@
 				);
 				INFOPLIST_FILE = LunchSaldoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.fbfactory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchSaldo.app/LunchSaldo";
 			};
@@ -522,6 +514,7 @@
 				);
 				INFOPLIST_FILE = LunchSaldoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.fbfactory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchSaldo.app/LunchSaldo";
 			};

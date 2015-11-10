@@ -23,10 +23,6 @@ DerivedData
 .DS_Store
 profile
 *~
-*.lock
 *.DS_Store
 *.swp
 *.out
-
-#CocoaPods
-Pods/

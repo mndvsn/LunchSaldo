@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let blue = AppSettings.Color.blue!
     let red = AppSettings.Color.red!
     
-    UITabBar.appearance().selectedImageTintColor = blue
+    UITabBar.appearance().tintColor = blue
     UIButton.appearance().setTitleColor(blue, forState: .Normal)
     UIBarButtonItem.appearance().tintColor = blue
     

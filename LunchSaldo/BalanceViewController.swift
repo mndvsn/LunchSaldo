@@ -55,9 +55,9 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
       
       let storedBalance = defaults.doubleForKey(AppSettings.Key.Balance.rawValue)
       if storedBalance < 80 {
-        self.balanceLabel.textColor = SWColor(hexString: "#EB5A51")
+        self.balanceLabel.textColor = AppSettings.Color.red!
       } else {
-        self.balanceLabel.textColor = SWColor(hexString: "#36BACF")
+        self.balanceLabel.textColor = AppSettings.Color.blue!
       }
       
       balanceLabel.text = "\(storedBalance) kr"
@@ -76,7 +76,7 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   }
   
   func showCardSetup() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as AddCardholderViewController
+    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as! AddCardholderViewController
     addCardViewController.delegate = self
     tabBarController?.presentViewController(addCardViewController, animated: false, completion: nil)
   }
@@ -97,17 +97,17 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
           // println(request)
           // println(response)
           if (error != nil) {
-            println(error)
+            print(error)
           } else {
             
-            if let balanceData = RikslunchenParser.parseBalanceData(data as NSData) {
+            if let balanceData = RikslunchenParser.parseBalanceData(data!) {
               self.balanceLabel.text = "\(balanceData.amount) kr"
               self.topUpDateLabel.text = balanceData.topUpDate
               
               if balanceData.amount < 80 {
-                self.balanceLabel.textColor = SWColor(hexString: "#EB5A51")
+                self.balanceLabel.textColor = AppSettings.Color.red!
               } else {
-                self.balanceLabel.textColor = SWColor(hexString: "#36BACF")
+                self.balanceLabel.textColor = AppSettings.Color.blue!
               }
               
               let newDate = NSDate()
