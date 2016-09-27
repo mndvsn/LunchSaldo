@@ -209,14 +209,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senaste uppdatering: 0000-00-00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKT-Yt-mfX">
-                                                    <rect key="frame" x="217" y="13" width="166" height="14"/>
+                                                    <rect key="frame" x="217" y="40" width="166" height="14"/>
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="OKT-Yt-mfX" secondAttribute="centerY" id="DhH-VS-swY"/>
+                                                <constraint firstAttribute="bottom" secondItem="OKT-Yt-mfX" secondAttribute="top" id="DhH-VS-swY"/>
                                                 <constraint firstAttribute="centerX" secondItem="OKT-Yt-mfX" secondAttribute="centerX" constant="0.5" id="nfq-UZ-CJP"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -230,7 +230,9 @@
                             <outlet property="delegate" destination="ayU-rh-2GF" id="LSF-R9-kyL"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="Stats" id="gKq-HW-geE"/>
+                    <tabBarItem key="tabBarItem" title="" image="Stats" id="gKq-HW-geE">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="y1l-ai-sYA">
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
@@ -568,7 +570,9 @@
         <scene sceneID="yE7-GL-Okh">
             <objects>
                 <navigationController hidesBarsWhenKeyboardAppears="YES" id="6LO-jc-2ey" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2"/>
+                    <tabBarItem key="tabBarItem" title="" image="Cog" id="5Xb-Kr-nk2">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zCM-Rf-kWb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
