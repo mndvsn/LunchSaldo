@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftColors
+import SwiftHEXColors
 
 struct AppSettings {
   struct Card {

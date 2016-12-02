@@ -18,13 +18,13 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
   
   @IBOutlet weak var versionLabel: UILabel?
   
-  unowned let defaults = NSUserDefaults.standardUserDefaults()
+  unowned let defaults = UserDefaults.standard
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     if let label = versionLabel {
-      if let bundleInfo = NSBundle.mainBundle().infoDictionary {
+      if let bundleInfo = Bundle.main.infoDictionary {
         let productName = bundleInfo[kCFBundleNameKey as String]!
         let productBuild = bundleInfo[kCFBundleVersionKey as String]!
         let productVersion = bundleInfo["CFBundleShortVersionString"] as! String
@@ -34,53 +34,53 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
     updateCardData()
   }
   
   @IBAction func removeCard() {
-    let alert = UIAlertController(title: "Ta bort kortet?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-    alert.addAction(UIAlertAction(title: "Ta bort", style: .Destructive, handler: { action in
-      self.defaults.removeObjectForKey(AppSettings.Key.RikslunchenCardID.rawValue)
-      self.defaults.removeObjectForKey(AppSettings.Key.Balance.rawValue)
-      self.defaults.removeObjectForKey(AppSettings.Key.LastUpdatedTime.rawValue)
-      self.defaults.removeObjectForKey(AppSettings.Key.TopUpDate.rawValue)
-      self.defaults.removeObjectForKey(AppSettings.Key.Employer.rawValue)
+    let alert = UIAlertController(title: "Ta bort kortet?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Ta bort", style: .destructive, handler: { action in
+      self.defaults.removeObject(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
+      self.defaults.removeObject(forKey: AppSettings.Key.Balance.rawValue)
+      self.defaults.removeObject(forKey: AppSettings.Key.LastUpdatedTime.rawValue)
+      self.defaults.removeObject(forKey: AppSettings.Key.TopUpDate.rawValue)
+      self.defaults.removeObject(forKey: AppSettings.Key.Employer.rawValue)
       self.defaults.synchronize()
       
       self.updateCardData()
     }))
-    alert.addAction(UIAlertAction(title: "Avbryt", style: .Cancel, handler: nil))
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: nil))
+    UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
   }
   
   func updateCardData() {
-    let cardId = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+    let cardId = defaults.integer(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
     if (cardId > 0) {
       cardIdLabel.text = String(cardId)
-      if let employerName = defaults.stringForKey(AppSettings.Key.Employer.rawValue) {
+      if let employerName = defaults.string(forKey: AppSettings.Key.Employer.rawValue) {
         employerLabel.text = employerName
       }
       
-      removeCardButton.hidden = false
-      showTransactionsButton.hidden = false
-      addCardButton.hidden = true
+      removeCardButton.isHidden = false
+      showTransactionsButton.isHidden = false
+      addCardButton.isHidden = true
     } else {
       cardIdLabel.text = "-"
       employerLabel.text = "-"
       
-      removeCardButton.hidden = true
-      showTransactionsButton.hidden = true
-      addCardButton.hidden = false
+      removeCardButton.isHidden = true
+      showTransactionsButton.isHidden = true
+      addCardButton.isHidden = false
     }
   }
   
   @IBAction func addNewCard() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as! AddCardholderViewController
+    let addCardViewController = storyboard?.instantiateViewController(withIdentifier: "AddCardholderViewController") as! AddCardholderViewController
     addCardViewController.delegate = self
-    tabBarController?.presentViewController(addCardViewController, animated: true, completion: nil)
+    tabBarController?.present(addCardViewController, animated: true, completion: nil)
   }
   
   override func didReceiveMemoryWarning() {

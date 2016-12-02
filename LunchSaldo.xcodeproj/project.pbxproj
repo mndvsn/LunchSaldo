@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170EA70BE0EB7524727C9946 /* Pods_LunchSaldo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32964BDA83E7221A07CD96C /* Pods_LunchSaldo.framework */; };
 		324CE8911A79379E00C45082 /* RikslunchenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CE8901A79379E00C45082 /* RikslunchenParser.swift */; };
 		32660AAC1A80CF1C00FFCA14 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */; };
 		326BECAC1A71330900A2C5AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BECAB1A71330900A2C5AF /* SettingsViewController.swift */; };
@@ -19,7 +20,6 @@
 		328EB4AE1A6FAB1E00846F38 /* LunchSaldoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328EB4AD1A6FAB1E00846F38 /* LunchSaldoTests.swift */; };
 		3293C5661A7257AE004E2CC5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3293C5651A7257AE004E2CC5 /* Constants.swift */; };
 		32DA03121A7A5E5B007FE1C9 /* AddCardholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DA03111A7A5E5B007FE1C9 /* AddCardholderViewController.swift */; };
-		DBF7FAAAC74E4B0079DF1FCB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A9E7EF778C10F34135C8B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A442A48190D49044FCFEC4D /* Pods-LunchSaldo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunchSaldo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunchSaldo/Pods-LunchSaldo.release.xcconfig"; sourceTree = "<group>"; };
 		324CE8901A79379E00C45082 /* RikslunchenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RikslunchenParser.swift; sourceTree = "<group>"; };
 		32660AAB1A80CF1C00FFCA14 /* TransactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		326BECAB1A71330900A2C5AF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -50,8 +51,8 @@
 		3293C5651A7257AE004E2CC5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		32DA03111A7A5E5B007FE1C9 /* AddCardholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardholderViewController.swift; sourceTree = "<group>"; };
 		3B2A9E7EF778C10F34135C8B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC9A1BADF7CA48DA07172ECA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E0FDD59123DDDB21F1F6F5D5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BFE91FD35020CC1094CC00A8 /* Pods-LunchSaldo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunchSaldo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LunchSaldo/Pods-LunchSaldo.debug.xcconfig"; sourceTree = "<group>"; };
+		D32964BDA83E7221A07CD96C /* Pods_LunchSaldo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LunchSaldo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF7FAAAC74E4B0079DF1FCB /* Pods.framework in Frameworks */,
+				170EA70BE0EB7524727C9946 /* Pods_LunchSaldo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,8 +80,8 @@
 				328EB4941A6FAB1E00846F38 /* LunchSaldo */,
 				328EB4AA1A6FAB1E00846F38 /* LunchSaldoTests */,
 				328EB4931A6FAB1E00846F38 /* Products */,
-				D43139DD2954C3CCD993F751 /* Pods */,
 				F2B155A20E170D0882D075E0 /* Frameworks */,
+				E5ACDF63AC1E56CE41398B6B /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -139,11 +140,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D43139DD2954C3CCD993F751 /* Pods */ = {
+		E5ACDF63AC1E56CE41398B6B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DC9A1BADF7CA48DA07172ECA /* Pods.debug.xcconfig */,
-				E0FDD59123DDDB21F1F6F5D5 /* Pods.release.xcconfig */,
+				BFE91FD35020CC1094CC00A8 /* Pods-LunchSaldo.debug.xcconfig */,
+				1A442A48190D49044FCFEC4D /* Pods-LunchSaldo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -152,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				3B2A9E7EF778C10F34135C8B /* Pods.framework */,
+				D32964BDA83E7221A07CD96C /* Pods_LunchSaldo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,13 +165,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 328EB4B11A6FAB1E00846F38 /* Build configuration list for PBXNativeTarget "LunchSaldo" */;
 			buildPhases = (
-				D09DEB59BDFAEDCE57FEF792 /* Check Pods Manifest.lock */,
+				3CC7F1C6455201F8C656FD92 /* [CP] Check Pods Manifest.lock */,
 				328EB48E1A6FAB1E00846F38 /* Sources */,
 				328EB48F1A6FAB1E00846F38 /* Frameworks */,
 				328EB4901A6FAB1E00846F38 /* Resources */,
-				3AB080A6A45D3D5AC7C57C77 /* Copy Pods Resources */,
-				B822BD3951A3DAEB12A08817 /* Embed Pods Frameworks */,
 				324CE88F1A78D78400C45082 /* ShellScript */,
+				C4F36D0A8C0C61187FC9D00D /* [CP] Embed Pods Frameworks */,
+				E19799D6AE026C363872F746 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,15 +208,17 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "F&B Factory";
 				TargetAttributes = {
 					328EB4911A6FAB1E00846F38 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = HUDL9QHPTC;
+						LastSwiftMigration = 0810;
 					};
 					328EB4A61A6FAB1E00846F38 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 328EB4911A6FAB1E00846F38;
 					};
 				};
@@ -273,49 +277,49 @@
 			shellPath = /bin/sh;
 			shellScript = "branch=$(git rev-parse --abbrev-ref HEAD)\nbuildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/bin/plutil -convert ${INFOPLIST_OUTPUT_FORMAT}1 \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n";
 		};
-		3AB080A6A45D3D5AC7C57C77 /* Copy Pods Resources */ = {
+		3CC7F1C6455201F8C656FD92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B822BD3951A3DAEB12A08817 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D09DEB59BDFAEDCE57FEF792 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C4F36D0A8C0C61187FC9D00D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunchSaldo/Pods-LunchSaldo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E19799D6AE026C363872F746 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LunchSaldo/Pods-LunchSaldo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -378,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -387,8 +392,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -398,6 +405,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -410,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -423,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -432,8 +441,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -442,15 +453,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -458,29 +471,33 @@
 		};
 		328EB4B21A6FAB1E00846F38 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC9A1BADF7CA48DA07172ECA /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BFE91FD35020CC1094CC00A8 /* Pods-LunchSaldo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		328EB4B31A6FAB1E00846F38 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0FDD59123DDDB21F1F6F5D5 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 1A442A48190D49044FCFEC4D /* Pods-LunchSaldo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -500,6 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fbfactory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchSaldo.app/LunchSaldo";
 			};
 			name = Debug;
@@ -516,6 +534,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fbfactory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LunchSaldo.app/LunchSaldo";
 			};
 			name = Release;

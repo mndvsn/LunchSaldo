@@ -11,11 +11,11 @@ import AEXML
 
 class RikslunchenParser {
   
-  class func parseBalanceData(data: NSData) -> (amount: Double, topUpDate: String)? {
+  class func parseBalanceData(_ data: Data) -> (amount: Double, topUpDate: String)? {
     do {
-      let xmlDoc = try AEXMLDocument(xmlData: data)
-      let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].doubleValue
-      let lastTopUpDate = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["lastTopUpDate"].stringValue
+      let xmlDoc = try AEXMLDocument(xml: data)
+      let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].double
+      let lastTopUpDate = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["lastTopUpDate"].string
       
       return (amount, lastTopUpDate)
     } catch {
@@ -24,11 +24,11 @@ class RikslunchenParser {
     return nil
   }
 
-  class func parseLoginResponseData(data: NSData) -> (Bool, String?) {
+  class func parseLoginResponseData(_ data: Data) -> (Bool, String?) {
     do {
-      let xmlDoc = try AEXMLDocument(xmlData: data)
+      let xmlDoc = try AEXMLDocument(xml: data)
       // print(xmlDoc.xmlString)
-      if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].boolValue == false {
+      if xmlDoc.root["soap:Body"]["ns2:loginResponse"]["return"].bool == false {
         return (false, "Felaktiga inloggningsuppgifter. Vänligen kontrollera användarnamn och lösenord och försök igen.")
       }
     } catch {
@@ -37,17 +37,17 @@ class RikslunchenParser {
     return (true, nil)
   }
   
-  class func parseCardListResponseData(data: NSData) -> (cardId:Int, employerName:String)? {
+  class func parseCardListResponseData(_ data: Data) -> (cardId:Int, employerName:String)? {
     do {
-      let xmlDoc = try AEXMLDocument(xmlData: data)
+      let xmlDoc = try AEXMLDocument(xml: data)
 //      println(xmlDoc.xmlString)
       
 //      if xmlDoc.root["soap:Body"]["soap:Fault"].all?.count > 0 {
 //        return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
 //      }
       
-      let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].intValue
-      let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].stringValue
+      let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].int
+      let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].string
       
       return (cardId, employerName)
     } catch {
@@ -56,30 +56,30 @@ class RikslunchenParser {
     return nil
   }
   
-  class func parseTransactions(data: NSData) -> ([Transaction]?) {
+  class func parseTransactions(_ data: Data) -> ([Transaction]?) {
     do {
-      let xmlDoc = try AEXMLDocument(xmlData: data)
+      let xmlDoc = try AEXMLDocument(xml: data)
       var transactions = [Transaction]()
       if let records = xmlDoc.root["soap:Body"]["ns2:getTransactionsDetailsListResponse"]["return"].all {
         for record in records {
-          let amount = record["amount"].doubleValue
-          let date = record["date"].stringValue
+          let amount = record["amount"].double
+          let date = record["date"].string
           
           var state: TransactionState {
-            switch record["state"].stringValue {
+            switch record["state"].string {
             case "FAILED":
-              return .Failed
+              return .failed
             default: // "SUCCESSFUL"
-              return .Successful
+              return .successful
             }
           }
           
           var type: TransactionType {
-            switch record["type"].stringValue {
+            switch record["type"].string {
             case "RELOAD":
-              return .Reload
+              return .reload
             default: // "PURCHASE"
-              return .Purchase
+              return .purchase
             }
           }
           transactions.append(Transaction(amount: amount, date: date, state: state, type: type))

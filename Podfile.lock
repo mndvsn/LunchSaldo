@@ -1,16 +1,18 @@
 PODS:
-  - AEXML (2.0.1)
-  - Alamofire (3.1.2)
-  - SwiftColors (0.3.1)
+  - AEXML (4.0.1)
+  - Alamofire (4.2.0)
+  - SwiftHEXColors (1.1.0)
 
 DEPENDENCIES:
   - AEXML
-  - Alamofire (~> 3.1)
-  - SwiftColors
+  - Alamofire
+  - SwiftHEXColors
 
 SPEC CHECKSUMS:
-  AEXML: d6bb5b994521fcf3667ee8ccc1ed533f31b19218
-  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
-  SwiftColors: 61efe0bf991cfed446684e03d1e9f635f1f11a84
+  AEXML: 905e50474c0a261d335aa8be4ee32d22d69b6fd5
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  SwiftHEXColors: 8f7e364df7929e32cff9f9eeb044bb215167d6be
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 226cf1d3b6157aec8e0dca08c080870587db97f4
+
+COCOAPODS: 1.0.1

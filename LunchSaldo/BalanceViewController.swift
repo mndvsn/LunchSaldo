@@ -8,6 +8,19 @@
 
 import UIKit
 import Alamofire
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class BalanceViewController: UITableViewController, AddCardholderViewControllerDelegate {
   
@@ -17,19 +30,19 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
 
   var cardID: Int?
   var shouldPresentSetupView: Bool = true
-  unowned let defaults = NSUserDefaults.standardUserDefaults()
+  unowned let defaults = UserDefaults.standard
   
   override func viewDidLoad() {
     super.viewDidLoad()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     checkStoredCards()
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if shouldPresentSetupView {
       showCardSetup()
@@ -37,23 +50,23 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   }
   
   func checkStoredCards() {
-    if (defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue) == 0) {
+    if (defaults.integer(forKey: AppSettings.Key.RikslunchenCardID.rawValue) == 0) {
       cardID = nil
       balanceLabel.text = "-"
       topUpDateLabel.text = "-"
       lastUpdateLabel.text = "Inga kort sparade"
     } else {
-      cardID = defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+      cardID = defaults.integer(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
       
       // card data is old, clean and force re-add
-      if cardID != nil && defaults.integerForKey(AppSettings.Key.RikslunchenCardID.rawValue) == 0 {
+      if cardID != nil && defaults.integer(forKey: AppSettings.Key.RikslunchenCardID.rawValue) == 0 {
         removeCard()
         return
       }
       
       shouldPresentSetupView = false
       
-      let storedBalance = defaults.doubleForKey(AppSettings.Key.Balance.rawValue)
+      let storedBalance = defaults.double(forKey: AppSettings.Key.Balance.rawValue)
       if storedBalance < 80 {
         self.balanceLabel.textColor = AppSettings.Color.red!
       } else {
@@ -61,12 +74,12 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
       }
       
       balanceLabel.text = "\(storedBalance) kr"
-      if let topUpDate = defaults.stringForKey(AppSettings.Key.TopUpDate.rawValue) {
+      if let topUpDate = defaults.string(forKey: AppSettings.Key.TopUpDate.rawValue) {
         topUpDateLabel.text = topUpDate
       }
       
-      if let updatedDate = (defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as? NSDate) {
-        let localizedDate = NSDateFormatter.localizedStringFromDate(updatedDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: .ShortStyle)
+      if let updatedDate = (defaults.object(forKey: AppSettings.Key.LastUpdatedTime.rawValue) as? Date) {
+        let localizedDate = DateFormatter.localizedString(from: updatedDate, dateStyle: DateFormatter.Style.short, timeStyle: .short)
         lastUpdateLabel.text = "Senaste uppdatering: " + localizedDate
       } else {
         lastUpdateLabel.text = "Saldot behöver uppdateras"
@@ -76,14 +89,14 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   }
   
   func showCardSetup() {
-    let addCardViewController = storyboard?.instantiateViewControllerWithIdentifier("AddCardholderViewController") as! AddCardholderViewController
+    let addCardViewController = storyboard?.instantiateViewController(withIdentifier: "AddCardholderViewController") as! AddCardholderViewController
     addCardViewController.delegate = self
-    tabBarController?.presentViewController(addCardViewController, animated: false, completion: nil)
+    tabBarController?.present(addCardViewController, animated: false, completion: nil)
   }
   
   @IBAction func attemptUpdate() {
-    let lastUpdate = defaults.objectForKey(AppSettings.Key.LastUpdatedTime.rawValue) as? NSDate
-    if cardID != nil && lastUpdate?.timeIntervalSinceDate(NSDate()) < -60 {
+    let lastUpdate = defaults.object(forKey: AppSettings.Key.LastUpdatedTime.rawValue) as? Date
+    if cardID != nil && lastUpdate?.timeIntervalSince(Date()) < -60 {
         updateBalance()
     } else {
       refreshControl?.endRefreshing()
@@ -92,15 +105,11 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   
   func updateBalance() {
     if let id = cardID {
-      Alamofire.request(RikslunchenRouter.GetBalance(cardId: id))
-        .response { (request, response, data, error) in
-          // println(request)
-          // println(response)
-          if (error != nil) {
-            print(error)
-          } else {
-            
-            if let balanceData = RikslunchenParser.parseBalanceData(data!) {
+      Alamofire.request(RikslunchenRouter.getBalance(cardId: id))
+        .responseData { response in
+          switch response.result {
+          case .success(let data):
+            if let balanceData = RikslunchenParser.parseBalanceData(data) {
               self.balanceLabel.text = "\(balanceData.amount) kr"
               self.topUpDateLabel.text = balanceData.topUpDate
               
@@ -110,15 +119,18 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
                 self.balanceLabel.textColor = AppSettings.Color.blue!
               }
               
-              let newDate = NSDate()
-              self.defaults.setObject(newDate, forKey: AppSettings.Key.LastUpdatedTime.rawValue)
-              self.defaults.setObject(balanceData.topUpDate, forKey: AppSettings.Key.TopUpDate.rawValue)
-              self.defaults.setObject(balanceData.amount, forKey: AppSettings.Key.Balance.rawValue)
+              let newDate = Date()
+              self.defaults.set(newDate, forKey: AppSettings.Key.LastUpdatedTime.rawValue)
+              self.defaults.set(balanceData.topUpDate, forKey: AppSettings.Key.TopUpDate.rawValue)
+              self.defaults.set(balanceData.amount, forKey: AppSettings.Key.Balance.rawValue)
               self.defaults.synchronize()
               
-              let localizedDate = NSDateFormatter.localizedStringFromDate(newDate, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: .ShortStyle)
+              let localizedDate = DateFormatter.localizedString(from: newDate, dateStyle: .short, timeStyle: .short)
               self.lastUpdateLabel.text = "Senaste uppdatering: " + localizedDate
             }
+            
+          case .failure(let error):
+            print(error)
           }
           
           self.refreshControl?.endRefreshing()
@@ -132,11 +144,11 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   }
   
   func removeCard() {
-    self.defaults.removeObjectForKey(AppSettings.Key.RikslunchenCardID.rawValue)
-    self.defaults.removeObjectForKey(AppSettings.Key.Balance.rawValue)
-    self.defaults.removeObjectForKey(AppSettings.Key.LastUpdatedTime.rawValue)
-    self.defaults.removeObjectForKey(AppSettings.Key.TopUpDate.rawValue)
-    self.defaults.removeObjectForKey(AppSettings.Key.Employer.rawValue)
+    self.defaults.removeObject(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
+    self.defaults.removeObject(forKey: AppSettings.Key.Balance.rawValue)
+    self.defaults.removeObject(forKey: AppSettings.Key.LastUpdatedTime.rawValue)
+    self.defaults.removeObject(forKey: AppSettings.Key.TopUpDate.rawValue)
+    self.defaults.removeObject(forKey: AppSettings.Key.Employer.rawValue)
     self.defaults.synchronize()
   }
   
@@ -147,7 +159,7 @@ class BalanceViewController: UITableViewController, AddCardholderViewControllerD
   
   // MARK: - Table view
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.row {
     case 1:
       return 40

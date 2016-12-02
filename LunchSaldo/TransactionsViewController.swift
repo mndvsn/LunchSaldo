@@ -10,11 +10,11 @@ import UIKit
 import Alamofire
 
 enum TransactionState {
-  case Successful, Failed
+  case successful, failed
 }
 
 enum TransactionType {
-  case Purchase, Reload
+  case purchase, reload
 }
 
 struct Transaction: CustomStringConvertible {
@@ -37,14 +37,14 @@ class TransactionsViewController: UITableViewController {
 
   @IBOutlet weak var loadMoreButton: UIBarButtonItem!
   
-  let cardId = NSUserDefaults.standardUserDefaults().integerForKey(AppSettings.Key.RikslunchenCardID.rawValue)
+  let cardId = UserDefaults.standard.integer(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
   
   var transactions = [Transaction]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    loadMoreButton.tintColor = UIColor.whiteColor()
+    loadMoreButton.tintColor = UIColor.white
     
 
     loadTransactions(20, withOffset: transactions.count) {
@@ -52,32 +52,38 @@ class TransactionsViewController: UITableViewController {
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     navigationController?.setNavigationBarHidden(false, animated: true)
   }
   
-  func loadTransactions(number: Int, withOffset offset: Int, onComplete: () -> ()) {
-    loadMoreButton.enabled = false
-    Alamofire.request(RikslunchenRouter.GetTransactions(cardId: cardId, from: NSDate(timeIntervalSinceReferenceDate: 0), to: NSDate(), records: number, offset: offset))
-      .response { (_, _, data, _) in
-        if let records = RikslunchenParser.parseTransactions(data!) {
-          self.transactions.appendContentsOf(records)
-          self.loadMoreButton.enabled = true
-          onComplete()
+  func loadTransactions(_ number: Int, withOffset offset: Int, onComplete: @escaping () -> ()) {
+    loadMoreButton.isEnabled = false
+    let request = RikslunchenRouter.getTransactions(cardId: cardId, from: Date(timeIntervalSinceReferenceDate: 0), to: Date(), records: number, offset: offset)
+    Alamofire.request(request)
+      .responseData { response in
+        switch response.result {
+        case .success(let data):
+          if let records = RikslunchenParser.parseTransactions(data) {
+            self.transactions.append(contentsOf: records)
+            self.loadMoreButton.isEnabled = true
+            onComplete()
+          }
+        default:
+          break
         }
     }
   }
   
-  @IBAction func loadMoreTransactions(sender: UIBarButtonItem) {
+  @IBAction func loadMoreTransactions(_ sender: UIBarButtonItem) {
     loadTransactions(50, withOffset: transactions.count) {
-      let oldLastRow = self.tableView.numberOfRowsInSection(0)
+      let oldLastRow = self.tableView.numberOfRows(inSection: 0)
       self.tableView.reloadData()
       
-      let newLastRow = self.tableView.numberOfRowsInSection(0)
+      let newLastRow = self.tableView.numberOfRows(inSection: 0)
       if newLastRow == oldLastRow {
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: newLastRow - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        self.tableView.scrollToRow(at: IndexPath(row: newLastRow - 1, section: 0), at: .bottom, animated: true)
       } else {
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: oldLastRow, inSection: 0), atScrollPosition: .Top, animated: true)
+        self.tableView.scrollToRow(at: IndexPath(row: oldLastRow, section: 0), at: .top, animated: true)
       }
     }
   }
@@ -89,16 +95,16 @@ class TransactionsViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return transactions.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("transaction", forIndexPath: indexPath) as! TransactionCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "transaction", for: indexPath) as! TransactionCell
     
     let transaction = transactions[indexPath.row]
     
@@ -106,18 +112,18 @@ class TransactionsViewController: UITableViewController {
     cell.amountLabel.text = "\(transaction.amount)0"
     
     switch transaction.type {
-    case .Purchase:
+    case .purchase:
       cell.amountLabel.textColor = AppSettings.Color.red!
-    case .Reload:
+    case .reload:
       cell.amountLabel.textColor = AppSettings.Color.blue!
       cell.amountLabel.text = "+" + cell.amountLabel.text!
     }
     
-    if transaction.state == .Successful {
+    if transaction.state == .successful {
       cell.contentView.backgroundColor = nil
     } else {
       let red = AppSettings.Color.red!
-      cell.contentView.backgroundColor = red.colorWithAlphaComponent(0.1)
+      cell.contentView.backgroundColor = red.withAlphaComponent(0.1)
     }
     
     return cell

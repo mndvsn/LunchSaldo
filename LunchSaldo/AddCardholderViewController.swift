@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 @objc protocol AddCardholderViewControllerDelegate {
-  optional func didUpdateCards()
+  @objc optional func didUpdateCards()
 }
 
 class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
@@ -20,31 +20,31 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   @IBOutlet weak var saveButton: UIButton!
   
   weak var delegate: AddCardholderViewControllerDelegate?
-  unowned let defaults = NSUserDefaults.standardUserDefaults()
+  unowned let defaults = UserDefaults.standard
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.rowHeight = self.tableView.bounds.height
-    saveButton.enabled = false
+    saveButton.isEnabled = true
   }
   
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     if textField == usernameInput {
       let newLength = textField.text!.characters.count + string.characters.count - range.length
-      saveButton.enabled = (newLength >= AppSettings.Card.usernameLength)
+      saveButton.isEnabled = (newLength >= AppSettings.Card.usernameLength)
       return newLength <= AppSettings.Card.usernameLength
     }
     return true
   }
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
   }
   
   @IBAction func validateAndSave() {
-    saveButton.enabled = false
+    saveButton.isEnabled = false
     if let username = Int(usernameInput.text!) {
       if String(username).characters.count == AppSettings.Card.usernameLength {
         let password = passwordInput.text!
@@ -53,43 +53,53 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
     }
   }
   
-  func validateCardholder(username:Int, _ password:String) {
-    Alamofire.request(RikslunchenRouter.LoginSession(username: username, password: password)).response { (_, _, data, error) in
-
-      if let loginData = data {
-        var (valid, errorMessage) = RikslunchenParser.parseLoginResponseData(loginData)
-
-        if valid && error == nil {
-          self.getCardList(username)
-        } else {
-          self.saveButton.enabled = true
-
-          if error != nil {
-            errorMessage = "Det gick inte att ansluta. Kontrollera dina nätverksinställningar."
+  func validateCardholder(_ username:Int, _ password:String) {
+    Alamofire.request(RikslunchenRouter.loginSession(username: username, password: password))
+      .responseData { response in
+        
+        var errorMessage: String?
+        
+        switch response.result {
+        case .success(let data):
+          let (valid, err) = RikslunchenParser.parseLoginResponseData(data)
+          if valid {
+            return self.getCardList(username)
+          } else {
+            errorMessage = err
           }
-
-          let alert = UIAlertController(title: "Fel", message: errorMessage, preferredStyle: .Alert)
-          alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-          self.presentViewController(alert, animated: true, completion: nil)
+          
+        case .failure:
+          self.saveButton.isEnabled = true
+          errorMessage = "Det gick inte att ansluta. Kontrollera dina nätverksinställningar."
         }
-      }
+        
+        if let message = errorMessage {
+          let alert = UIAlertController(title: "Fel", message: message, preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .default))
+          self.present(alert, animated: true)
+        }
     }
   }
   
-  func getCardList(username: Int) {
-    Alamofire.request(RikslunchenRouter.GetCardList(username: username))
-      .response { (_, _, data, error) in
-        if let cardListInfo = RikslunchenParser.parseCardListResponseData(data!) {
-          self.defaults.setInteger(cardListInfo.cardId, forKey: AppSettings.Key.RikslunchenCardID.rawValue)
-          self.defaults.setObject(NSString(UTF8String: cardListInfo.employerName), forKey: AppSettings.Key.Employer.rawValue)
-          
-          self.defaults.synchronize()
-          
-          self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-          
-          self.delegate?.didUpdateCards?()
+  func getCardList(_ username: Int) {
+    Alamofire.request(RikslunchenRouter.getCardList(username: username))
+      .responseData { response in
+        switch response.result {
+        case .success(let data):
+          if let cardListInfo = RikslunchenParser.parseCardListResponseData(data) {
+            self.defaults.set(cardListInfo.cardId, forKey: AppSettings.Key.RikslunchenCardID.rawValue)
+            self.defaults.set(NSString(utf8String: cardListInfo.employerName), forKey: AppSettings.Key.Employer.rawValue)
+            
+            self.defaults.synchronize()
+            
+            self.presentingViewController?.dismiss(animated: true)
+            
+            self.delegate?.didUpdateCards?()
+          }
+        default:
+          break
         }
-    }
+      }
   }
   
   override func didReceiveMemoryWarning() {
