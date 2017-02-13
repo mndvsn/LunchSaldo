@@ -215,6 +215,7 @@
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = HUDL9QHPTC;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					328EB4A61A6FAB1E00846F38 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -476,11 +477,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = HUDL9QHPTC;
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "db3b2723-ad7c-4e5f-94f8-5345de8236a3";
+				PROVISIONING_PROFILE_SPECIFIER = "Factory Adhoc";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -492,11 +497,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				DEVELOPMENT_TEAM = HUDL9QHPTC;
 				INFOPLIST_FILE = LunchSaldo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "se.fb.factory.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "42e44869-76c5-48ad-b1dd-4f51103f71c3";
+				PROVISIONING_PROFILE_SPECIFIER = LunchSaldo;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
