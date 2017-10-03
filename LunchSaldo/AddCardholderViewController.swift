@@ -102,6 +102,10 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
       }
   }
   
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return self.tableView.frame.height
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
