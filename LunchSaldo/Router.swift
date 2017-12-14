@@ -75,7 +75,7 @@ enum RikslunchenRouter: URLRequestConvertible {
     urlRequest.httpMethod = method.rawValue
     
     if let soap = soapString {
-      let soapLength = soap.characters.count
+      let soapLength = soap.count
       urlRequest.setValue(String(soapLength), forHTTPHeaderField: "Content-Length")
       urlRequest.httpBody = soap.data(using: String.Encoding.utf8, allowLossyConversion: false)
     }

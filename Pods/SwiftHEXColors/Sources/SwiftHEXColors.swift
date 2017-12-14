@@ -1,6 +1,6 @@
 //  SwiftHEXColors.swift
 //
-// Copyright (c) 2014 Doan Truong Thi
+// Copyright (c) 2014 SwiftHEXColors contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,8 @@ public extension SWColor {
 	fileprivate convenience init?(hex3: Int, alpha: Float) {
 		self.init(red:   CGFloat( ((hex3 & 0xF00) >> 8).duplicate4bits() ) / 255.0,
 				  green: CGFloat( ((hex3 & 0x0F0) >> 4).duplicate4bits() ) / 255.0,
-				  blue:  CGFloat( ((hex3 & 0x00F) >> 0).duplicate4bits() ) / 255.0, alpha: CGFloat(alpha))
+				  blue:  CGFloat( ((hex3 & 0x00F) >> 0).duplicate4bits() ) / 255.0,
+				  alpha: CGFloat(alpha))
 	}
 	
 	fileprivate convenience init?(hex6: Int, alpha: Float) {
@@ -70,7 +71,7 @@ public extension SWColor {
 
 		// Check for hash and remove the hash
 		if hex.hasPrefix("#") {
-			hex = hex.substring(from: hex.index(hex.startIndex, offsetBy: 1))
+            		hex = String(hex[hex.index(after: hex.startIndex)...])
 		}
 		
 		guard let hexVal = Int(hex, radix: 16) else {
@@ -78,7 +79,7 @@ public extension SWColor {
 			return nil
 		}
 		
-		switch hex.characters.count {
+		switch hex.count {
 		case 3:
 			self.init(hex3: hexVal, alpha: alpha)
 		case 6:
@@ -112,7 +113,7 @@ public extension SWColor {
 	 */
 	public convenience init?(hex: Int, alpha: Float) {
 		if (0x000000 ... 0xFFFFFF) ~= hex {
-			self.init(hex6: hex , alpha: alpha)
+			self.init(hex6: hex, alpha: alpha)
 		} else {
 			self.init()
 			return nil

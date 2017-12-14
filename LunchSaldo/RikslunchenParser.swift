@@ -14,7 +14,7 @@ class RikslunchenParser {
   class func parseBalanceData(_ data: Data) -> (amount: Double, topUpDate: String)? {
     do {
       let xmlDoc = try AEXMLDocument(xml: data)
-      let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].double
+      let amount = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["amount"].double ?? 0.00
       let lastTopUpDate = xmlDoc.root["soap:Body"]["ns2:getBalanceResponse"]["return"]["lastTopUpDate"].string
       
       return (amount, lastTopUpDate)
@@ -46,7 +46,7 @@ class RikslunchenParser {
 //        return (false, xmlDoc.root["soap:Body"]["soap:Fault"]["faultstring"].stringValue)
 //      }
       
-      let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].int
+      let cardId = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["cardNo"].int ?? 0
       let employerName = xmlDoc.root["soap:Body"]["ns2:getCardListResponse"]["return"]["employerName"].string
       
       return (cardId, employerName)
@@ -62,7 +62,7 @@ class RikslunchenParser {
       var transactions = [Transaction]()
       if let records = xmlDoc.root["soap:Body"]["ns2:getTransactionsDetailsListResponse"]["return"].all {
         for record in records {
-          let amount = record["amount"].double
+          let amount = record["amount"].double ?? 0.0
           let date = record["date"].string
           
           var state: TransactionState {

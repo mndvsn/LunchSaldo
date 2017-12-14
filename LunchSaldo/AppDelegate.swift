@@ -20,14 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let blue = AppSettings.Color.blue!
     let red = AppSettings.Color.red!
     
+//    UIButton.appearance().setTitleColor(blue, for: .normal)
+//    UIBarButtonItem.appearance().tintColor = blue
+
     UITabBar.appearance().tintColor = blue
-    UIButton.appearance().setTitleColor(blue, for: .normal)
-    UIBarButtonItem.appearance().tintColor = blue
-    
+    UITabBar.appearance().layer.borderWidth = 0.0
+    UITabBar.appearance().clipsToBounds = true
+
     UINavigationBar.appearance().barTintColor = red
     UINavigationBar.appearance().isTranslucent = false
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+//    UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = .white
     
     return true
   }

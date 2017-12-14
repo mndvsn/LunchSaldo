@@ -25,13 +25,12 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.rowHeight = self.tableView.bounds.height
     saveButton.isEnabled = true
   }
   
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     if textField == usernameInput {
-      let newLength = textField.text!.characters.count + string.characters.count - range.length
+      let newLength = textField.text!.count + string.count - range.length
       saveButton.isEnabled = (newLength >= AppSettings.Card.usernameLength)
       return newLength <= AppSettings.Card.usernameLength
     }
@@ -46,7 +45,7 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   @IBAction func validateAndSave() {
     saveButton.isEnabled = false
     if let username = Int(usernameInput.text!) {
-      if String(username).characters.count == AppSettings.Card.usernameLength {
+      if String(username).count == AppSettings.Card.usernameLength {
         let password = passwordInput.text!
         validateCardholder(username, password)
       }
@@ -103,7 +102,8 @@ class AddCardholderViewController: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return self.tableView.frame.height
+    return self.view.frame.size.height - 20.0
+//    return self.tableView.frame.height
   }
   
   override func didReceiveMemoryWarning() {

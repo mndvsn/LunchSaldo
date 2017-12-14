@@ -45,7 +45,6 @@ class TransactionsViewController: UITableViewController {
     super.viewDidLoad()
     
     loadMoreButton.tintColor = UIColor.white
-    
 
     loadTransactions(20, withOffset: transactions.count) {
       self.tableView.reloadData()
