@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController, AddCardholderViewControllerDeleg
   }
   
   @IBAction func removeCard() {
-    let alert = UIAlertController(title: "Ta bort kortet?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+    let alert = UIAlertController(title: "Ta bort kortet?", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ta bort", style: .destructive, handler: { action in
       self.defaults.removeObject(forKey: AppSettings.Key.RikslunchenCardID.rawValue)
       self.defaults.removeObject(forKey: AppSettings.Key.Balance.rawValue)
